@@ -1,0 +1,53 @@
+#' 
+#' @title Calculates the sample size required to achieve the desired power
+#' @description Estimates by how much the simulated study size needs to be inflated or shrank in order to obtain the specified level of power. The ratio of z-statistic required for desired power to mean model z-statistic obtained indicates the relative changes in standard error required. This cirresponds to relative change on scale and square root of sample size.
+#' @param numcases Number of cases when outcome is binary
+#' @param numcontrols Number of controls when outcome is binary
+#' @param num.subjects Number of subjects when outcome is continuous
+#' @param pheno.model Outcome type, 0 for binary and 1 for continuous
+#' @param pval Cut-off p-value defining statistical significance
+#' @param power Desired power
+#' @param mean.model.z Ratio of mean beta estimate over mean se estimate
+#' @return A table containing:
+#'  \code{numcases.required} Number of cases required to achieve the desired power under binary outcome model
+#'  \code{numcontrols.required} Number of controls required to achieve the desired power under binary outcome model
+#'  \code{numsubjects.required} Number of subjects required to achieve the desired power under a quantatative outcome model
+#' @author Amadou Gaye
+
+samplsize.calc <-
+function(numcases=2000,numcontrols=8000,num.subjects=500,pheno.model=0,pval=1e-04,power=0.8,mean.model.z=NULL)
+{
+
+   if(is.null(mean.model.z)){
+			  cat("\n\n ALERT!\n")
+			  cat(" The argument 'mean.model.z' is set to NULL.\n")
+			  cat(" This argument should be the ratio 'mean.beta/mean.se'.\n")
+			  stop(" End of process!\n\n", call.=FALSE)
+		 } 
+		 
+   # CALCULATE Z STATISTIC THRESHOLD FOR DESIRED P-VALUE AND POWER
+   z.pval <- qnorm(1-pval/2)
+   z.power.required <- qnorm(power)+z.pval
+
+   # ESTIMATE HOW MUCH THE SIMULATED STUDY SIZE NEEDS TO BE INFLATED OR SHRINKED 
+   # IN ORDER TO OBTAIN A POWER OF 80%. THE RATIO OF Z STATISTIC REQUIRED FOR DESIRED 
+   # POWER TO MEAN MODEL Z STATISTIC OBTAINED INDICATES RELATIVE CHANGE REQUIRED IN STANDARD ERROR. 
+   # THIS CORRESPONDS TO RELATIVE CHANGE ON SCALE OF SQUARE ROOT OF SAMPLE SIZE. RATIO OF SAMPLE 
+   # SIZE IS THEREFORE THIS RATIO SQUARED.
+   sample.size.inflation.required <- (z.power.required/mean.model.z)^2
+
+   if(pheno.model==0){ # IF THE OUTCOME IS BINARY
+     # MULTIPLY THE INPUT NUMBER OF CASES AND CONTROLS BY THIS
+     # SQUARED RATIO TO GET THE REQUIRED NUMBER OF CASES AND CONTROLS
+     # FOR THE DESIRED POWER
+     cases <- round(numcases*sample.size.inflation.required,0)
+     controls <- round(numcontrols*sample.size.inflation.required,0) 
+     return(list(numcases.required=cases, numcontrols.required=controls))
+      
+   }else{ # IF THE OUTCOME IS CONTINUOUS
+     # MULTIPLY THE INPUT NUMBER OF SUBJECTS BY THE INFLATION REQUIRED
+     subjects <- round(num.subjects*sample.size.inflation.required,0)      
+     return(list(numsubjects.required=subjects))
+   }
+}
+

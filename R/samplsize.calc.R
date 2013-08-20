@@ -9,9 +9,9 @@
 #' @param power Desired power
 #' @param mean.model.z Ratio of mean beta estimate over mean se estimate
 #' @return A table containing:
-#'  \code{numcases.required} Number of cases required to achieve the desired power under binary outcome model
-#'  \code{numcontrols.required} Number of controls required to achieve the desired power under binary outcome model
-#'  \code{numsubjects.required} Number of subjects required to achieve the desired power under a quantatative outcome model
+#' \code{numcases.required} Number of cases required to achieve the desired power under binary outcome model
+#' \code{numcontrols.required} Number of controls required to achieve the desired power under binary outcome model
+#' \code{numsubjects.required} Number of subjects required to achieve the desired power under a quantatative outcome model
 #' @author Amadou Gaye
 
 samplsize.calc <-

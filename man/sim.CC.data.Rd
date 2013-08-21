@@ -49,7 +49,7 @@
   \item{env.OR}{Odds ratios of the environmental
   determinants}
 
-  \item{int.OR}{<------------------------------------------------------------------------------------------------}
+  \item{int.OR}{Odds ration of the interaction}
 
   \item{baseline.OR}{Baseline odds ratio for subject on 95
   percent population centile versus 5 percentile. This

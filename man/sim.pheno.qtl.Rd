@@ -17,9 +17,11 @@
 
   \item{env.efkt}{Effects of the environmental determiants}
 
-  \item{interaction}{<--------------------------------------------------------------------}
+  \item{interaction}{Effect model: main effects=0,
+  Gene-Environment interaction=1, Gene-Gene interaction=2
+  and Environment-Enviroment interaction=3}
 
-  \item{int.efkt}{<--------------------------------------------------------------------}
+  \item{int.efkt}{Interaction effect}
 }
 \value{
   A dataframe of phenotype

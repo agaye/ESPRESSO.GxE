@@ -12,7 +12,7 @@
 #' @param env.sd Standard deviation under quantitative-normal model
 #' @param env.low.lim lower limit under quantitative-uniform model
 #' @param env.up.lim upper limit under quantitative-uniform model
-#' @param int.efkt <-------------------------------------------------------------------------------------------
+#' @param int.efkt Interaction effect
 #' @return A matrix
 #' @author Amadou Gaye
 

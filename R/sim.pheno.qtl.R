@@ -6,8 +6,8 @@
 #' @param geno.efkt Effects if the genetic variants
 #' @param environment Exposure data for environment
 #' @param env.efkt Effects of the environmental determiants
-#' @param interaction <--------------------------------------------------------------------
-#' @param int.efkt <--------------------------------------------------------------------
+#' @param interaction Effect model: main effects=0, Gene-Environment interaction=1, Gene-Gene interaction=2 and Environment-Enviroment interaction=3
+#' @param int.efkt Interaction effect
 #' @return A dataframe of phenotype
 #' @author Amadou Gaye
 

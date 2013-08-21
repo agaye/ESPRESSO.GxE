@@ -16,7 +16,7 @@
 #' @param env.low.lim Lower limit under quantitative-uniform model
 #' @param env.up.lim Upper limit under quantitative-uniform model
 #' @param env.OR Odds ratios of the environmental determinants
-#' @param int.OR   <------------------------------------------------------------------------------------------------
+#' @param int.OR Odds ration of the interaction
 #' @param baseline.OR Baseline odds ratio for subject on 95 percent population centile versus 5 percentile. This parameter reflects the heterogeneity in disease risk arising from determinates that have not been measured or have not been included in the model
 #' @return A matrix
 #' @author Amadou Gaye

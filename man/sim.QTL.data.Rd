@@ -37,7 +37,7 @@
   \item{env.up.lim}{upper limit under quantitative-uniform
   model}
 
-  \item{int.efkt}{<-------------------------------------------------------------------------------------------}
+  \item{int.efkt}{Interaction effect}
 }
 \value{
   A matrix

@@ -12,6 +12,7 @@
 #' \code{numcases.required} Number of cases required to achieve the desired power under binary outcome model
 #' \code{numcontrols.required} Number of controls required to achieve the desired power under binary outcome model
 #' \code{numsubjects.required} Number of subjects required to achieve the desired power under a quantatative outcome model
+#' @export
 #' @author Amadou Gaye
 
 samplsize.calc <-

@@ -11,6 +11,7 @@
 #'\code{observed.genotype} Observed genotypes
 #'\code{observed.allele.A} Observed A alleles
 #'\code{observed.allele.B} Observed B alleles
+#'@export
 #'@author Amadou Gaye
 
 get.obs.geno <-

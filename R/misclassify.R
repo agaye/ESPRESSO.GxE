@@ -6,6 +6,7 @@
 #' @param error.1.0 1 to 0 misclassification rate
 #' @param error.0.1 0 to 1 misclassification rate
 #' @return A binary vector
+#' @export
 #' @author Amadou Gaye
 
 misclassify <-

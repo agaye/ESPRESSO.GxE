@@ -8,6 +8,8 @@
 #' \code{allele.A} Major allele
 #' \code{allele.B} Minor allele
 #' \code{genotype} Genotype
+#' @export
+#' @author Amadou Gaye
 
 sim.geno.data <-
 function(num.obs=20000, MAF=0.1, geno.model=0)

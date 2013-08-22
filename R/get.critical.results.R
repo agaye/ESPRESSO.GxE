@@ -18,6 +18,7 @@
 #' \code{empirical.power} Estimated empirical power under each model
 #' \code{modelled.power} Power achieved under each model with specified sample size
 #' \code{estimated.OR} Esitmated odds-ratios due to shrinkage toward the null resulting from misclassification
+#' @export
 #' @author Amadou Gaye
 
 

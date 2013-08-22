@@ -10,6 +10,7 @@
 #' @return A dataframe of two coloumns:
 #' \code{true.environment} Input data (true data)
 #' \code{observed.environment} Observed data
+#' @export
 #' @author Amadou Gaye
 
 get.obs.env <- function(env.data=NULL,env.model=0,env.prev=0.1,env.sd=1,env.error=c(0.15,0.15),env.reliability=0.8)

@@ -11,6 +11,7 @@
 #' @param env.OR Odds ratios of the two environments
 #' @param int.OR int.OR Odds ration of the interaction
 #' @return A dataframe of phenotype
+#' @export
 #' @author Amadou Gaye
 
 sim.pheno.bin <-

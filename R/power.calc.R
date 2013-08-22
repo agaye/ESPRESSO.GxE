@@ -5,6 +5,7 @@
 #' @param z.values z-statistic of the determinant
 #' @param mean.model.z Mean z-statistic of the environmental determinant
 #' @return A table containing empirical power and theoretical power
+#' @export
 #' @author Amadou Gaye
 
 power.calc <- function(pval=1e-04, z.values=NULL, mean.model.z=NULL)

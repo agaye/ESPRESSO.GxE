@@ -9,6 +9,7 @@
 #' @param env.low.lim Lower limit under quantitative-uniform model
 #' @param env.up.lim Upper limit under quantitative-uniform model
 #' @return A vector of continuous or binary values
+#' @export
 #' @author Amadou Gaye
 
 sim.env.data <-

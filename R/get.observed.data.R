@@ -14,6 +14,7 @@
 #' @param pheno.error Misclassification rate: 1 to 0, 0 to 1
 #' @param pheno.reliability Reliability of the assessment of quantitative phenotype
 #' @return A matrix
+#' @export
 #' @author Amadou Gaye
 
 get.observed.data <-

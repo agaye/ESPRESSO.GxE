@@ -9,6 +9,7 @@
 #' @param env.params parameters for the environmental determinant
 #' @param scenarios2run the indices of the scenarios one wish to analyse
 #' @return a summary table that contains both the input parameters and the results of the analysis
+#' @export
 #' @author Amadou Gaye
 
 run.espresso.GxE <- function(simulation.params=NULL, pheno.params=NULL, geno.params=NULL, env.params=NULL, scenarios2run=1){

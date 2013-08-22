@@ -14,6 +14,7 @@
 #' @param env.up.lim upper limit under quantitative-uniform model
 #' @param int.efkt Interaction effect
 #' @return A matrix
+#' @export
 #' @author Amadou Gaye
 
 sim.QTL.data <-

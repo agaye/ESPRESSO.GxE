@@ -8,6 +8,7 @@
 #' @param pheno.reliability Reliability of the assessment of quantitative phenotype
 #' @return A dataframe containing:
 #' \code{observed.phenotype} Observed data
+#' @export
 #' @author Amadou Gaye
 
 get.obs.pheno <-

@@ -4,6 +4,7 @@
 #' @param num.obs Number of observations to simulate
 #' @param baseline.OR Baseline odds ratio for subject on 95 percent population centile versus 5 percentile. This parameter reflects the heterogeneity in disease risk arising from determinantes that have not been measured or have not been included in the model
 #' @return A numerical vector
+#' @export
 #' @author Amadou Gaye
 
 sim.subject.data <-

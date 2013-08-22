@@ -17,7 +17,9 @@
 
   \item{environment}{Exposure data for environment}
 
-  \item{interaction}{<-----------------------------------------------------------------------}
+  \item{interaction}{Effect model: main effects=0,
+  Gene-Environment interaction=1, Gene-Gene interaction=2
+  and Environment-Enviroment interaction=3}
 
   \item{subject.effect.data}{Subject effect data, reflects
   the heterogenity in baseline disease risk}
@@ -27,7 +29,7 @@
 
   \item{env.OR}{Odds ratios of the two environments}
 
-  \item{int.OR}{<-----------------------------------------------------------------------}
+  \item{int.OR}{int.OR Odds ration of the interaction}
 }
 \value{
   A dataframe of phenotype

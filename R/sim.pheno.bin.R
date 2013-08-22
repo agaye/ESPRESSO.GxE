@@ -9,7 +9,7 @@
 #' @param subject.effect.data Subject effect data, reflects the heterogenity in baseline disease risk
 #' @param geno.OR Odds ratios of the two genetic determinates
 #' @param env.OR Odds ratios of the two environments
-#' @param int.OR int.OR Odds ration of the interaction
+#' @param int.OR Odds ration of the interaction
 #' @return A dataframe of phenotype
 #' @author Amadou Gaye
 

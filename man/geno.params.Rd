@@ -1,19 +1,20 @@
 \name{geno.params}
 \alias{geno.params}
 \docType{data}
-\title{Parameters to simulate the genetic determinant}
-\description{A table with 7 columns: scenario.id, geno.model, MAF, geno.OR, geno.efkt, geno.sensitivity, geno.specificity.}
+\title{Parameters to generate genetic exposures data}
+\description{A table that contains parameters to set the genetic exposure}
 \usage{data(geno.params)}
 \format{
-  A table with 7 columns and 1 row for each scenario
+  A data frame with 4 observations on the following 7 variables.
   \describe{
-    \item{\code{scenario.id}}{The ID of the scenario}
-    \item{\code{geno.model}}{Genetic model; 0 for binary and 1 for continuous}
-    \item{\code{MAF}}{Minor allele frequency}
-    \item{\code{geno.OR}}{Odds ratios of the genetic determinants}
-    \item{\code{geno.efkt}}{Effects of the genetic variants}
-    \item{\code{geno.sensitivity}}{Sensitivity of the assessment to the genetic determinants}
-    \item{\code{geno.specificity}}{Specificity of the assessment to the genetic determinants}
+    \item{\code{scenario.id}}{scenario ID}
+    \item{\code{geno.model}}{genetic model: binary (0) or additive (1)}
+    \item{\code{MAF}}{minor allele frequency of the SNP}
+    \item{\code{geno.OR}}{odds ratio if outcome is binary}
+    \item{\code{geno.efkt}}{effect size if outcome is quantitative}
+    \item{\code{geno.sensitivity}}{sensitivity of the assessment of the SNP alleles}
+    \item{\code{geno.specificity}}{specificity of the assessment of the SNP alleles}
   }
 }
 \examples{data(geno.params)}
+

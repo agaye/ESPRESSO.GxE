@@ -1,43 +1,44 @@
 \name{get.obs.env}
 \alias{get.obs.env}
-\title{Generates some observed environmental exposure data}
+\title{Generates the observed environmental exposure data}
 \usage{
-  get.obs.env(env.data = NULL, env.model = 0,
-    env.prev = 0.1, env.sd = 1, env.error = c(0.15, 0.15),
-    env.reliability = 0.8)
+get.obs.env(env.data = NULL, env.model = 0, env.sd = 1, env.prev = 0.2,
+  env.error = c(0.1, 0.1), env.reliability = 0.9)
 }
 \arguments{
-  \item{env.data}{A vector of environmental measures that
-  represents the true data}
+  \item{env.data}{a vector of environmental measures that
+  represents the true data.}
 
-  \item{env.model}{Model of the exposure: binary=0
-  ,quantitative-normal=1 or quantitative-uniform=2}
+  \item{env.model}{distribution of the exposure: binary=0 ,
+  normal=1 or uniform=2.}
 
-  \item{env.prev}{Prevalence of the environmental
-  determinat}
-
-  \item{env.sd}{Standard deviation}
+  \item{env.prev}{prevalence of the environmental
+  exposure.}
 
   \item{env.error}{misclassification rates: 1-sensitivity
-  and 1-specificity}
+  and 1-specificity.}
 
-  \item{env.reliability}{Reliability of the assessment of
-  quantitative exposure}
+  \item{env.reliability}{reliability of the assessment of
+  quantitative exposure.}
 }
 \value{
-  A dataframe of two coloumns: \code{true.environment}
-  Input data (true data) \code{observed.environment}
-  Observed data
+a dataframe with two coloumns/variables:
+\code{true.environment} the error free exposure data (true
+data). \code{observed.environment} the true esposure data
+with some added error (observed data).
 }
 \description{
-  Adds a set level of error to simulated binary or
-  quantitative data(the true data) to obtain data with a
-  larger variance (the observed data). The level of error
-  is determined by the misclassification rates in binary
-  data and by the set level of variance in the quantitative
-  data.
+Adds a set level of error to binary or quantitative data
+(the true data) to obtain data with a larger variance (the
+observed data). The level of error is determined by the
+misclassification rates in binary exposure and by the set
+level of variance in the quantitative exposure.
+}
+\details{
+
 }
 \author{
-  Amadou Gaye
+Amadou Gaye
 }
+\keyword{internal}
 

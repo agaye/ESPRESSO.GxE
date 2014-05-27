@@ -18,11 +18,10 @@
 #' \code{empirical.power} Estimated empirical power under each model
 #' \code{modelled.power} Power achieved under each model with specified sample size
 #' \code{estimated.OR} Esitmated odds-ratios due to shrinkage toward the null resulting from misclassification
-#' @export
-#' @author Amadou Gaye
-
-
-get.critical.results <-
+#' @keywords internal
+#' @author Gaye A.
+#'
+get.critical.results.GxE <-
 function(scenario=1, pheno.model=0,geno.model=0,env.model=0,sample.sizes.required=NULL,
          empirical.power=0.8,modelled.power=0.8,mean.beta=NULL)
 {
@@ -111,8 +110,8 @@ function(scenario=1, pheno.model=0,geno.model=0,env.model=0,sample.sizes.require
 					cat("\nModels\n")
 					cat("------\n")
 					cat(" Outcome: quantitative; ")
-					cat("  Genetic determinant:",g.model,"\n")
-					cat("  Environmental determinant:",e.model)
+					cat(" Genetic determinant: ",g.model,"\n")
+					cat(" Environmental determinant: ",e.model)
 
 					cat("\n\nNumber of subjects required\n")
 					cat("------------------------\n")

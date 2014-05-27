@@ -1,24 +1,24 @@
 \name{env.params}
 \alias{env.params}
 \docType{data}
-\title{Parameters to simulate environmental exposures data}
-\description{A table with 12 columns: scenario.id, env.model, env.prevalence, env.OR, env.efkt, env.mean, env.sd, env.low.lim, env.up.lim, env.sensitivity, env.specificity, env.reliability}
+\title{Parameters to generate environmental exposure data}
+\description{A table that contains parameters to set the environmental exposure}
 \usage{data(env.params)}
 \format{
-   A table with 12 columns and 1 row for each scenario
+  A data frame with 4 observations on the following 12 variables.
   \describe{
-    \item{\code{scenario.id}}{The ID of the scenario}
-    \item{\code{env.model}}{Model of the environmental exposure; 0 for binary and 1 for continuous}
-    \item{\code{env.prevalence}}{Prevelance of environment}
-    \item{\code{env.OR}}{Odds ratio of environmental exposure}
-    \item{\code{env.efkt}}{Effect size of environment}
-    \item{\code{env.mean}}{The mean measure for the environment under quantitative-normal model}
-    \item{\code{env.sd}}{Standard deviation under quantitative-normal model}
-    \item{\code{env.low.lim}}{Lower limit under quantitative-uniform model}
-    \item{\code{env.up.lim}}{Upper limit under quantitative-uniform model}
-    \item{\code{env.sensitivity}}{Sensitivity of the assessment to the environment}
-    \item{\code{env.specificity}}{Specificity of the assessment to the environment}
-    \item{\code{env.reliability}}{Reliability of the assessment of quantative exposure}
+    \item{\code{scenario.id}}{scenario ID}
+    \item{\code{env.model}}{model of the environmental exposure; 0 for binary and 1 for continuous}
+    \item{\code{env.prevalence}}{prevelance of the 'at risk' environmental exposure}
+    \item{\code{env.OR}}{odds ratio related to the environmental exposure (when exposure is binary)}
+    \item{\code{env.efkt}}{effect size related to the environmental exposure (when exposure is quantitative)}
+    \item{\code{env.mean}}{statistical mean of the normally distributed environment exposure}
+    \item{\code{env.sd}}{standard deviation of the normally distributed environment exposure}
+    \item{\code{env.low.lim}}{Lower limit of the uniformly distributed environment exposure}
+    \item{\code{env.up.lim}}{Upper limit of the uniformly distributed environment exposure}
+    \item{\code{env.sensitivity}}{sensitivity of the assessment of the binary exposure}
+    \item{\code{env.specificity}}{specificity of the assessment of the binary exposure}
+    \item{\code{env.reliability}}{reliability of the assessment of the quantative exposure}
   }
 }
 

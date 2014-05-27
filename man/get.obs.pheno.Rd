@@ -1,34 +1,49 @@
 \name{get.obs.pheno}
 \alias{get.obs.pheno}
-\title{Generates some observed environmental exposure data}
+\title{Generates observed outcome data}
 \usage{
-  get.obs.pheno(phenotype = NULL, pheno.model,
-    pheno.error.1.0 = 0.05, pheno.error.0.1 = 0.05,
-    pheno.reliability = 0.9)
+get.obs.pheno(phenotype = NULL, pheno.model = 0, pheno.sd = 1,
+  pheno.error = c(0.05, 0.05), pheno.reliability = 0.9)
 }
 \arguments{
-  \item{phenotype}{phenotype}
+  \item{seed}{}
 
-  \item{pheno.model}{Model of the phenotype: binary=0
-  ,quantitative-normal=1 or quantitative-uniform=2}
+  \item{phenotype}{outcome status.}
 
-  \item{pheno.error.1.0}{1 to 0 misclassification rate}
+  \item{pheno.model}{distribution of the outcome variable:
+  binary=0, normal=1}
 
-  \item{pheno.error.0.1}{0 to 1 misclassification rate}
+  \item{pheno.sd}{standard deviation of the outcome in the
+  study population}
 
-  \item{pheno.reliability}{Reliability of the assessment of
-  quantitative phenotype}
+  \item{pheno.model}{distribution of the outcome variable:
+  binary=0, normal=1 or uniform=2.}
+
+  \item{pheno.sd}{standard deviation of the outcome in the
+  study the population}
+
+  \item{pheno.error}{misclassification rates: 1-sensitivity
+  and 1-specificity}
+
+  \item{pheno.reliability}{reliability of the assessment
+  for a quantitative outcome.}
 }
 \value{
-  A dataframe containing: \code{observed.phenotype}
-  Observed data
+A dataframe containing: \code{true.phenotype} the error
+free outcome data (true data). \code{observed.phenotype}
+the true outcome data with some added error (observed
+data).
 }
 \description{
-  Adds a set level of error to simulated binary or
-  quantitative data(the true data) to obtain data with a
-  larger variance (the observed data).
+Adds a set level of error to error free binary or
+quantitative data (the true phenotype data) to obtain data
+with a larger variance (the observed phenotype data).
+}
+\details{
+
 }
 \author{
-  Amadou Gaye
+Gaye A.
 }
+\keyword{internal}
 

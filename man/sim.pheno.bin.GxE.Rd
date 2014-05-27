@@ -1,11 +1,10 @@
-\name{sim.pheno.bin}
-\alias{sim.pheno.bin}
+\name{sim.pheno.bin.GxE}
+\alias{sim.pheno.bin.GxE}
 \title{Generates phenotype status}
 \usage{
-  sim.pheno.bin(num.obs = 20000, disease.prev = 0.1,
-    genotype = NULL, environment = NULL,
-    interaction = NULL, subject.effect.data = NULL,
-    geno.OR = 1.5, env.OR = 1.5, int.OR = 1.5)
+sim.pheno.bin.GxE(num.obs = 20000, disease.prev = 0.1, genotype = NULL,
+  environment = NULL, interaction = NULL, subject.effect.data = NULL,
+  geno.OR = 1.5, env.OR = 1.5, int.OR = 1.5)
 }
 \arguments{
   \item{num.obs}{Number of observations to generate per
@@ -29,15 +28,18 @@
 
   \item{env.OR}{Odds ratios of the two environments}
 
-  \item{int.OR}{int.OR Odds ration of the interaction}
+  \item{int.OR}{Odds ration of the interaction}
 }
 \value{
-  A dataframe of phenotype
+A dataframe of phenotype
 }
 \description{
-  Generates affected and non-affected subjects
+Generates affected and non-affected subjects
+}
+\details{
+
 }
 \author{
-  Amadou Gaye
+Gaye a.
 }
 

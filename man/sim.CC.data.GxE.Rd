@@ -1,14 +1,13 @@
-\name{sim.CC.data}
-\alias{sim.CC.data}
+\name{sim.CC.data.GxE}
+\alias{sim.CC.data.GxE}
 \title{Simulates case and controls}
 \usage{
-  sim.CC.data(num.obs = 20000, numcases = 2000,
-    numcontrols = 8000, allowed.sample.size = 2e+07,
-    disease.prev = 0.1, MAF = 0.1, geno.model = 0,
-    geno.OR = 1.5, env.model = 0, env.prev = 0.1,
-    env.mean = 0, env.sd = 1, env.low.lim = 0,
-    env.up.lim = 1, env.OR = 1.5, int.OR = 1.5,
-    baseline.OR = 12.36)
+sim.CC.data.GxE(num.obs = 20000, numcases = 2000, numcontrols = 8000,
+  allowed.sample.size = 2e+07, disease.prev = 0.1, MAF = 0.1,
+  geno.model = 0, geno.OR = 1.5, env.model = 0, env.prev = 0.1,
+  env.mean = 0, env.sd = 1, env.low.lim = 0, env.up.lim = 1,
+  env.OR = 1.5, int.OR = 1.5, baseline.OR = 12.36, ph.error = c(0.1,
+  0.1))
 }
 \arguments{
   \item{num.obs}{Number of observations to generate per
@@ -55,16 +54,22 @@
   percent population centile versus 5 percentile. This
   parameter reflects the heterogeneity in disease risk
   arising from determinates that have not been measured or
-  have not been included in the model}
+  have not been included in the model.}
+
+  \item{ph.error}{misclassification rates: 1-sensitivity
+  and 1-specificity}
 }
 \value{
-  A matrix
+A matrix
 }
 \description{
-  Generates affected and non-affected subjects until the
-  set sample size is achieved
+Generates affected and non-affected subjects until the set
+sample size is achieved.
+}
+\details{
+
 }
 \author{
-  Amadou Gaye
+Gaye A.
 }
 

@@ -4,10 +4,10 @@
 #' @param pheno.model Type of outcome; 0=binary and 1=continuous
 #' @param observed.data A dataframe that contains covariates and outcome data
 #' @return A vector containing the beta, standard-error and z-statistic of each of the covariates
-#' @export
-#' @author Amadou Gaye
-
-glm.analysis <-
+#' @keywords internal
+#' @author Gaye A.
+#'
+glm.analysis.GxE <-
 function(pheno.model=0, observed.data=NULL)
 {
   if(is.null(observed.data)){

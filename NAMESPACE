@@ -1,0 +1,8 @@
+export(get.obs.geno)
+export(get.observed.data.GxE)
+export(misclassify)
+export(run.espresso.GxE)
+export(sim.CC.data.GxE)
+export(sim.env.data)
+export(sim.geno.data)
+export(sim.pheno.bin.GxE)

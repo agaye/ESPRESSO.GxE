@@ -1,15 +1,18 @@
-\name{sim.QTL.data}
-\alias{sim.QTL.data}
+\name{sim.QTL.data.GxE}
+\alias{sim.QTL.data.GxE}
 \title{Simulates subjects for continuous outcome}
 \usage{
-  sim.QTL.data(numsubjects = 500, MAF = 0.1,
-    geno.model = 0, geno.efkt = 0.25, env.model = 0,
-    env.efkt = 0.5, env.prev = 0.1, env.mean = 0,
-    env.sd = 1, env.low.lim = 0, env.up.lim = 1,
-    int.efkt = 1.5)
+sim.QTL.data.GxE(numsubjects = 500, ph.mean = 0, ph.sd = 1, MAF = 0.1,
+  geno.model = 0, geno.efkt = 0.25, env.model = 0, env.efkt = 0.5,
+  env.prev = 0.1, env.mean = 0, env.sd = 1, env.low.lim = 0,
+  env.up.lim = 1, int.efkt = 1.5, pheno.reliability = 0.9)
 }
 \arguments{
   \item{num.subjects}{Number of subjects to simulate}
+
+  \item{ph.mean}{statistical mean}
+
+  \item{ph.sd}{standard deviation}
 
   \item{MAF}{Minor allele frequencies of the two genetic
   variants}
@@ -38,14 +41,21 @@
   model}
 
   \item{int.efkt}{Interaction effect}
+
+  \item{pheno.reliability}{reliability of the assessment
+  for a quantitative outcome.}
 }
 \value{
-  A matrix
+A matrix
 }
 \description{
-  Generates the specified number of subjects
+Generates the specified number of subjects
+}
+\details{
+
 }
 \author{
-  Amadou Gaye
+Gaye A.
 }
+\keyword{internal}
 

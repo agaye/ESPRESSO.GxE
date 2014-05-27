@@ -1,17 +1,42 @@
 #' 
 #' @title Runs a full ESPRESSO analysis
 #' @description This function calls the functions required to run a full ESPRESSO analysis 
-#'  where the model consit of an outcome (binary or continuous) determinant by a binary or 
-#'  continuous environmental determinant.
+#'  where the model consists of an outcome (binary or continuous) determined by two interacting
+#'  covariates (a SNP  and an environmental exposure)
 #' @param simulation.params general parameters for the scenario(s) to analyse
 #' @param pheno.params paramaters for the outcome variables
 #' @param geno.params parameters for the genetic determinant
 #' @param env.params parameters for the environmental determinant
 #' @param scenarios2run the indices of the scenarios one wish to analyse
-#' @return a summary table that contains both the input parameters and the results of the analysis
+#' @return a summary table that contains both the input parameters and 
+#' the results of the analysis
 #' @export
-#' @author Amadou Gaye
-
+#' @author Gaye A.
+#' @examples {
+#'   
+#' # load the table that hold the input parameters; each of the table
+#' # hold parameters for 4 scenarios:
+#' # scenario 1: a binary outcome determined by a binary SNP and binary exposure, 
+#' # with interaction
+#' # scenario 2: a binary outcome determined by an additive SNP and continuous 
+#' # exposure, with interaction
+#' # scenario 3: a quantitative outcome determined by a binary SNP and binary exposure, 
+#' # with interaction
+#' # scenario 4: a quantitative outcome determined by an additive SNP and continuous 
+#' # exposure, with interaction
+#' data(simulation.params) 
+#' data(pheno.params)
+#' data(geno.params)
+#' data(env.params)
+#' 
+#' # run the function for the first two scenarios, two binomial models
+#' run.espresso.GxE(simulation.params, pheno.params, geno.params, env.params, scenarios2run=c(1,2))
+#'
+#' # run the function for the last two scenarios, two gaussian models
+#' run.espresso.GxE(simulation.params, pheno.params, geno.params, env.params, scenarios2run=c(3,4))
+#' 
+#' }
+#'
 run.espresso.GxE <- function(simulation.params=NULL, pheno.params=NULL, geno.params=NULL, env.params=NULL, scenarios2run=1){
 
 # IF AN INPUT FILE IS NOT SUPPLIED LOAD THE DEFAULT TABLES WARNING
@@ -19,36 +44,28 @@ if(is.null(simulation.params)){
   cat("\n WARNING!\n")
   cat(" No simulation parameters supplied\n")
   cat(" The default simulation parameters will be used\n")
-  simulation.params <- read.table("simulation.params.csv", header=T, sep=";")#data(simulation.params)
-}else{
-  simulation.params <- read.table(simulation.params, header=T, sep=";")
+  simulation.params <- data(simulation.params)
 }
 
 if(is.null(pheno.params)){
   cat("\n WARNING!\n")
   cat(" No outcome parameters supplied\n")
   cat(" The default outcome parameters will be used\n")
-  pheno.params <- read.table("pheno.params.csv", header=T, sep=";")#data(pheno.params)
-}else{
-  pheno.params <- read.table(pheno.params, header=T, sep=";")
+  pheno.params <- data(pheno.params)
 }
 
 if(is.null(geno.params)){
   cat("\n WARNING!\n")
   cat(" No genotype parameters supplied\n")
   cat(" The default genotype parameters will be used\n")
-  geno.params <- read.table("geno.params.csv", header=T, sep=";")#data(geno.params)
-}else{
-  geno.params <- read.table(geno.params, header=T, sep=";")
+  geno.params <- data(geno.params)
 }
 
 if(is.null(env.params)){
   cat("\n WARNING!\n")
   cat(" No environmental parameters supplied\n")
   cat(" The default environmental parameters will be used\n")
-  env.params <- read.table("env.params.csv", header=T, sep=";")#data(env.params)
-}else{
-  env.params <- read.table(env.params, header=T, sep=";")
+  env.params <- data(env.params)
 }
 
 # MERGE INPUT FILES TO MAKE ONE TABLE OF PARAMETERS
@@ -73,7 +90,7 @@ block.size <- 20000
 
 # DECLARE MATRIX THAT STORE THE RESULTS FOR EACH SCENARIO (ONE PER SCENARIO PER ROW)
 output.file <- "output.csv"
-output.matrix <- matrix(numeric(0), ncol=40)
+output.matrix <- matrix(numeric(0), ncol=42)
 column.names <- c(colnames(s.parameters), "exceeded.sample.size?","numcases.required", "numcontrols.required", 
                  "numsubjects.required", "empirical.power", "modelled.power","estimated.OR")
                  
@@ -103,6 +120,8 @@ for(j in c(scenarios2run))
    
    # OUTCOME PARAMETERS
    pheno.model <- s.parameters$pheno.model[j]
+   pheno.mean <- s.parameters$pheno.mean[j]
+   pheno.sd <- s.parameters$pheno.sd[j]
    disease.prev <- s.parameters$disease.prev[j]
    pheno.error <- c(1-s.parameters$pheno.sensitivity[j],1-s.parameters$pheno.specificity[j])
    pheno.reliability <- s.parameters$pheno.reliability[j]    
@@ -145,27 +164,31 @@ for(j in c(scenarios2run))
 
       if(pheno.model == 0){ # UNDER BINARY OUTCOME MODEL
         # GENERATE CASES AND CONTROLS UNTILL THE REQUIRED NUMBER OF CASES, CONTROLS IS ACHIEVED 
-        sim.data <- sim.CC.data(block.size, numcases, numcontrols, allowed.sample.size, disease.prev, MAF,
-                             geno.model, geno.OR, env.model, env.prev, env.mean, env.sd, env.low.lim, env.up.lim, env.OR, int.OR,
-                             baseline.OR)
-        true.data <- sim.data$data
+        sim.data <- sim.CC.data.GxE(num.obs=block.size, numcases=numcases, numcontrols=numcontrols, 
+                                    allowed.sample.size=allowed.sample.size, disease.prev=disease.prev,
+                                    MAF=MAF, geno.model=geno.model, geno.OR=geno.OR, env.model=env.model, 
+                                    env.prev=env.prev, env.mean=env.mean, env.sd=env.sd, env.low.lim=env.low.lim, 
+                                    env.up.lim=env.up.lim, env.OR=env.OR, int.OR=int.OR, baseline.OR=baseline.OR, 
+                                    ph.error=pheno.error)
+
+        true.data <<- sim.data$data
 
       }else{ # UNDER QUANTITATIVE OUTCOME MODEL
         # GENERATE THE SPECIFIED NUMBER OF SUBJECTS
-        true.data <- sim.QTL.data(numsubjects,MAF,geno.model,geno.efkt,env.model,env.efkt,
-         env.prev,env.mean,env.sd,env.low.lim,env.up.lim,int.efkt)
+        true.data <- sim.QTL.data.GxE(numsubjects,pheno.mean,pheno.sd,MAF,geno.model,geno.efkt,env.model,env.efkt,
+         env.prev,env.mean,env.sd,env.low.lim,env.up.lim,int.efkt,pheno.reliability)
       }
 
       #------------SIMULATE ERRORS AND ADD THEM TO THE TRUE COVARIATES DATA TO OBTAIN OBSERVED COVARIATES DATA-----------#
 
       # ADD APPROPRIATE ERRORS TO PRODUCE OBSERVED GENOTYPES 
-      observed.data <- get.observed.data(true.data,geno.error,geno.model,MAF,env.error,env.model,env.prev,env.sd,
-                                         env.reliability,pheno.model,pheno.error,pheno.reliability)
+      observed.data <<- get.observed.data.GxE(true.data,geno.error,geno.model,MAF,env.error,env.model,env.prev,env.sd,
+                                         env.reliability)
 
 
       #--------------------------DATA ANALYSIS ----------------------------#
 
-      glm.estimates <- glm.analysis(pheno.model, observed.data)
+      glm.estimates <- glm.analysis.GxE(pheno.model, observed.data)
 
       beta.values[s] <- glm.estimates[[1]]
       se.values[s] <- glm.estimates[[2]]
@@ -200,7 +223,7 @@ for(j in c(scenarios2run))
 
    #------------------MAKE FINAL A TABLE THAT HOLDS BOTH INPUT PARAMETERS AND OUTPUT RESULTS---------------#
 
-   critical.res <- get.critical.results(j,pheno.model,geno.model,env.model,sample.sizes.required,power$empirical,
+   critical.res <- get.critical.results.GxE(j,pheno.model,geno.model,env.model,sample.sizes.required,power$empirical,
                                         power$modelled,mean.beta)
 
    #  WHEN OUTCOME IS BINARY INFORM IF RECORD EXCEEDED MAXIMUM SAMPLE SIZE
@@ -220,14 +243,14 @@ for(j in c(scenarios2run))
    if(pheno.model==0){
       mod <- "binary"
       if(env.model==0){
-        inparams [c(6,8,16,20,26:30,33)] <- "NA"
+        inparams [c(6,8,18,22,28:32,35)] <- "NA"
         inputs <- inparams
       }else{
         if(env.model==1){
-        inparams [c(6,8,16,20,24,26,29:32)] <- "NA"
+        inparams [c(6,8,18,22,26,28,31:33)] <- "NA"
         inputs <- inparams
         }else{
-        inparams [c(6,8,16,20,24,26:28,31,32)] <- "NA"
+        inparams [c(6,8,18,22,26,28:30,33,34)] <- "NA"
         inputs <- inparams          
         }
       }
@@ -235,14 +258,14 @@ for(j in c(scenarios2run))
    }else{
       mod <- "quantitative"
       if(env.model==0){
-        inparams [c(4,5,7,13:15,19,25,27:30,33)] <- "NA"
+        inparams [c(4,5,7,15:17,21,27,29:32,35)] <- "NA"
         inputs <- inparams
       }else{
         if(env.model==1){
-        inparams [c(4,5,7,13:15,19,24,25,29:32)] <- "NA"
+        inparams [c(4,5,7,15:17,21,26,27,31:34)] <- "NA"
         inputs <- inparams
         }else{
-        inparams [c(4,5,7,13:15,19,24,25,27,28,31,32)] <- "NA"
+        inparams [c(4,5,7,15:17,21,26,27,29,30,33,35)] <- "NA"
         inputs <- inparams          
         }
       }

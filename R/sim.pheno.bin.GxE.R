@@ -5,16 +5,18 @@
 #' @param disease.prev Prevalence of the binary outcome
 #' @param genotype Exposure data for genetic determinate
 #' @param environment Exposure data for environment
-#' @param interaction Effect model: main effects=0, Gene-Environment interaction=1, Gene-Gene interaction=2 and Environment-Enviroment interaction=3
-#' @param subject.effect.data Subject effect data, reflects the heterogenity in baseline disease risk
+#' @param interaction Effect model: main effects=0, Gene-Environment interaction=1, 
+#' Gene-Gene interaction=2 and Environment-Enviroment interaction=3
+#' @param subject.effect.data Subject effect data, reflects the heterogenity 
+#' in baseline disease risk
 #' @param geno.OR Odds ratios of the two genetic determinates
 #' @param env.OR Odds ratios of the two environments
 #' @param int.OR Odds ration of the interaction
 #' @return A dataframe of phenotype
 #' @export
-#' @author Amadou Gaye
-
-sim.pheno.bin <-
+#' @author Gaye a.
+#'
+sim.pheno.bin.GxE <-
 function(num.obs=20000, disease.prev=0.1, genotype=NULL, environment=NULL, interaction=NULL, subject.effect.data=NULL, 
          geno.OR=1.5, env.OR=1.5, int.OR=1.5)
 { 
@@ -57,6 +59,7 @@ function(num.obs=20000, disease.prev=0.1, genotype=NULL, environment=NULL, inter
    
    # GENERATE THE PHENOTYPE DATA AND RETURN IT AS A DATAFRAME
    phenotype <- rbinom(num.obs,1,mu)
-   pheno.data <- data.frame(phenotype)
+   
+   return(phenotype)
 }
 

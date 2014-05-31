@@ -2,7 +2,7 @@
 \alias{glm.analysis.GxE}
 \title{Carries out regression analysis}
 \usage{
-glm.analysis.GxE(pheno.model = 0, observed.data = NULL)
+glm.analysis.GxE(pheno.model = NULL, observed.data = NULL)
 }
 \arguments{
   \item{pheno.model}{Type of outcome; 0=binary and

@@ -2,8 +2,8 @@
 \alias{get.obs.geno}
 \title{Adds some error to genotype data}
 \usage{
-get.obs.geno(allele.A = NULL, allele.B = NULL, geno.model = 0,
-  MAF = 0.1, geno.error = c(0.05, 0.05))
+get.obs.geno(allele.A = NULL, allele.B = NULL, geno.model = NULL,
+  MAF = NULL, geno.error = NULL)
 }
 \arguments{
   \item{allele.A}{Allele A}
@@ -38,4 +38,5 @@ new genotypes that represent the observed genotypes.
 \author{
 Gaye A.
 }
+\keyword{internal}
 

@@ -2,9 +2,9 @@
 \alias{sim.pheno.bin.GxE}
 \title{Generates phenotype status}
 \usage{
-sim.pheno.bin.GxE(num.obs = 20000, disease.prev = 0.1, genotype = NULL,
+sim.pheno.bin.GxE(num.obs = NULL, disease.prev = NULL, genotype = NULL,
   environment = NULL, interaction = NULL, subject.effect.data = NULL,
-  geno.OR = 1.5, env.OR = 1.5, int.OR = 1.5)
+  geno.OR = NULL, env.OR = NULL, int.OR = NULL)
 }
 \arguments{
   \item{num.obs}{Number of observations to generate per
@@ -42,4 +42,5 @@ Generates affected and non-affected subjects
 \author{
 Gaye a.
 }
+\keyword{internal}
 

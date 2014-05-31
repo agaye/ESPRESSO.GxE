@@ -12,7 +12,7 @@
 #' @keywords internal
 #' @author Gaye A.
 #'
-power.calc <- function(pval=1e-04, z.values=NULL, mean.model.z=NULL){
+power.calc <- function(pval=NULL, z.values=NULL, mean.model.z=NULL){
   
   if(is.null(z.values)){
     cat("\n\n ALERT!\n")

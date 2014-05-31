@@ -2,8 +2,8 @@
 \alias{get.obs.pheno}
 \title{Generates observed outcome data}
 \usage{
-get.obs.pheno(phenotype = NULL, pheno.model = 0, pheno.sd = 1,
-  pheno.error = c(0.05, 0.05), pheno.reliability = 0.9)
+get.obs.pheno(phenotype = NULL, pheno.model = NULL, pheno.sd = NULL,
+  pheno.error = NULL, pheno.reliability = NULL)
 }
 \arguments{
   \item{seed}{}

@@ -2,7 +2,7 @@
 \alias{sim.subject.data}
 \title{Simulates the individual effect related to heterogeneity in baseline disease risk}
 \usage{
-sim.subject.data(num.obs = 10000, baseline.OR = 12.36)
+sim.subject.data(num.obs = NULL, baseline.OR = NULL)
 }
 \arguments{
   \item{num.obs}{number of observations to simulate.}

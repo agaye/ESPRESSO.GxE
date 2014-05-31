@@ -8,14 +8,8 @@
 #' @author Gaye A.
 #'
 glm.analysis.GxE <-
-function(pheno.model=0, observed.data=NULL)
+function(pheno.model=NULL, observed.data=NULL)
 {
-  if(is.null(observed.data)){
-			 cat("\n\n ALERT!\n")
-			 cat(" No data found.\n")
-			 cat(" Check the argument 'observed.data'\n")
-			 stop(" End of process!\n\n", call.=FALSE)
-		} 
 
   # BINARY OUTCOME
   if(pheno.model == 0){

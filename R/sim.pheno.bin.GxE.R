@@ -13,39 +13,13 @@
 #' @param env.OR Odds ratios of the two environments
 #' @param int.OR Odds ration of the interaction
 #' @return A dataframe of phenotype
-#' @export
+#' @keywords internal
 #' @author Gaye a.
 #'
 sim.pheno.bin.GxE <-
-function(num.obs=20000, disease.prev=0.1, genotype=NULL, environment=NULL, interaction=NULL, subject.effect.data=NULL, 
-         geno.OR=1.5, env.OR=1.5, int.OR=1.5)
+function(num.obs=NULL, disease.prev=NULL, genotype=NULL, environment=NULL, interaction=NULL, 
+         subject.effect.data=NULL, geno.OR=NULL, env.OR=NULL, int.OR=NULL)
 { 
-   # IF GENOTYPE AND SUBJECT EFFECT DATA ARE NOT SUPPLIED STOP AND ISSUE AN ALERT
-   if(is.null(genotype)){
-			  cat("\n\n ALERT!\n")
-			  cat(" No genotype data found.\n")
-			  cat(" Check the argument 'genotype'\n")
-			  stop(" End of process!\n\n", call.=FALSE)
-			}
-			if(is.null(environment)){
-			  cat("\n\n ALERT!\n")
-			  cat(" No environment data found.\n")
-			  cat(" Check the argument 'environment'\n")
-			  stop(" End of process!\n\n", call.=FALSE)
-			}
-		 if(is.null(interaction)){
-			  cat("\n\n ALERT!\n")
-			  cat(" No interaction data found.\n")
-			  cat(" This should be the product 'genotype' by 'environment'\n")
-			  stop(" End of process!\n\n", call.=FALSE)
-			}
-			if(is.null(subject.effect.data)){
-			  cat("\n\n ALERT!\n")
-			  cat(" No baseline effect data found.\n")
-			  cat(" Check the argument 'subject.effect.data'\n")
-			  stop(" End of process!\n\n", call.=FALSE)
-			}
- 
    # GET THE ALPHA AND BETA VALUES
    alpha <- log(disease.prev/(1-disease.prev))
    geno.beta <-	log(geno.OR)

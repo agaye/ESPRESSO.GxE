@@ -2,9 +2,9 @@
 \alias{get.critical.results.GxE}
 \title{Summarizes the main results}
 \usage{
-get.critical.results.GxE(scenario = 1, pheno.model = 0, geno.model = 0,
-  env.model = 0, sample.sizes.required = NULL, empirical.power = 0.8,
-  modelled.power = 0.8, mean.beta = NULL)
+get.critical.results.GxE(scenario = NULL, pheno.model = NULL,
+  geno.model = NULL, env.model = NULL, sample.sizes.required = NULL,
+  empirical.power = NULL, modelled.power = NULL, mean.beta = NULL)
 }
 \arguments{
   \item{scenario}{Scenario number}

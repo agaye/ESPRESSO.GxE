@@ -2,8 +2,8 @@
 \alias{sim.env.data}
 \title{Simulates cases and controls}
 \usage{
-sim.env.data(num.obs = 10000, env.model = 0, env.prev = 0.1,
-  env.mean = 0, env.sd = 1, env.low.lim = 0, env.up.lim = 1)
+sim.env.data(num.obs = NULL, env.model = NULL, env.prev = NULL,
+  env.mean = NULL, env.sd = NULL, env.low.lim = NULL, env.up.lim = NULL)
 }
 \arguments{
   \item{num.obs}{number of observations to simulate.}
@@ -39,4 +39,5 @@ quantitative-uniform environmental determinant.
 \author{
 Gaye A.
 }
+\keyword{internal}
 

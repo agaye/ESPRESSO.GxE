@@ -9,25 +9,22 @@
 #' \code{allele.A} major allele
 #' \code{allele.B} minor allele
 #' \code{genotype} genotype
-#' @export
+#' @keywords internal
 #' @author Gaye A.
 #' 
-sim.geno.data <- function(num.obs=10000, geno.model=0, MAF=0.2){
+sim.geno.data <- function(num.obs=NULL, geno.model=NULL, MAF=NULL){
   
-  numobs <- num.obs
-  geno.mod <- geno.model
-  geno.maf <- MAF
 
   # CORRECTION TERM FOR MEAN CENTERING FOR ADDITIVE 
-  mean.geno.additive <- (2*geno.maf*(1-geno.maf)+2*(geno.maf^2))
+  mean.geno.additive <- (2*MAF*(1-MAF)+2*(MAF^2))
 
   # CORRECTION TERM FOR MEAN CENTERING FOR BINARY GENE
-  mean.geno.binary <- (2*geno.maf*(1-geno.maf)+(geno.maf^2))
+  mean.geno.binary <- (2*MAF*(1-MAF)+(MAF^2))
 
   # CREATE, CENTRE AND ROUND AN ADDITIVE GENETIC GENOTYPE COVARIATE WITH
   # APPROPRIATE MAF 
-  allele.A <- rbinom(numobs,1,geno.maf)
-  allele.B <- rbinom(numobs,1,geno.maf)
+  allele.A <- rbinom(num.obs,1,MAF)
+  allele.B <- rbinom(num.obs,1,MAF)
 
   # ACTUAL GENOTYPE IS SUM OF ALLELES IN ADDITIVE GENETIC MODEL
   # AND IS 1 IF SUM OF ALLELES IS 1 OR GREATER IN THE BINARY MODEL 

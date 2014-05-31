@@ -2,7 +2,7 @@
 \alias{sim.geno.data}
 \title{Generates genotypes for a genetic variant}
 \usage{
-sim.geno.data(num.obs = 10000, geno.model = 0, MAF = 0.2)
+sim.geno.data(num.obs = NULL, geno.model = NULL, MAF = NULL)
 }
 \arguments{
   \item{num.obs}{number of observations to generate.}
@@ -28,4 +28,5 @@ genotype of a SNP under a binary or additive genetic model.
 \author{
 Gaye A.
 }
+\keyword{internal}
 

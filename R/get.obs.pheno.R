@@ -16,22 +16,7 @@
 #' @keywords internal
 #' @author Gaye A.
 #'
-get.obs.pheno <- function (phenotype=NULL, pheno.model=0, pheno.sd=1, pheno.error=c(0.05,0.05), pheno.reliability=0.9){ 
-  
-  if(is.null(phenotype)){
-    cat("\n\n ALERT!\n")
-    cat(" No phenotype data found.\n")
-    cat(" Check the argument 'phenotype'\n")
-    stop(" End of process!\n\n", call.=FALSE)
-  } 
-  if(is.null(pheno.model)){
-    cat("\n\n ALERT!\n")
-    cat(" No outcome  model provided\n")
-    cat(" Check the argument 'pheno.model'\n")
-    stop(" End of process!\n\n", call.=FALSE)
-  } 
-  
- true.phenotype <- phenotype
+get.obs.pheno <- function (phenotype=NULL, pheno.model=NULL, pheno.sd=NULL, pheno.error=NULL, pheno.reliability=NULL){ 
   
   # GET THE OBSERVED OUTCOME DATA
   if(pheno.model==0){ # IF THE OUTCOME IS BINARY
@@ -45,14 +30,9 @@ get.obs.pheno <- function (phenotype=NULL, pheno.model=0, pheno.sd=1, pheno.erro
     # VAR.measurement = (VAR.true.data/RELIABILITY) - VAR.true.data
     var.m <- (pheno.sd^2/pheno.reliability)-(pheno.sd^2)
     
-    # GENERATE THE NORMALLY DISTRIBUTED ERROR USING THE ABOVE COMPUTED VARIANCE
-    num.obs <- length(phenotype)
-    observed.phenotype <- rnorm(num.obs,phenotype,sqrt(var.m))
-    var.m <- (pheno.sd^2/pheno.reliability)-(pheno.sd^2) 
-    
     # ADD THE ERROR TO ORIGINAL PHENOTYPES TO GENERATE THE OBSERVED PHENOTYPE DATA
-    num.obs <- length(true.phenotype)
-    observed.phenotype <- rnorm(num.obs,true.phenotype,sqrt(var.m))
+    n <- length(phenotype)
+    observed.phenotype <- rnorm(n, phenotype, sqrt(var.m))
   } 
   
   # RETURN THE TRUE AND OBSERVED PHENOTYPE DATA AS A DATAFRAME

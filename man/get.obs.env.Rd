@@ -2,8 +2,8 @@
 \alias{get.obs.env}
 \title{Generates the observed environmental exposure data}
 \usage{
-get.obs.env(env.data = NULL, env.model = 0, env.sd = 1, env.prev = 0.2,
-  env.error = c(0.1, 0.1), env.reliability = 0.9)
+get.obs.env(env.data = NULL, env.model = NULL, env.sd = NULL,
+  env.prev = NULL, env.error = NULL, env.reliability = NULL)
 }
 \arguments{
   \item{env.data}{a vector of environmental measures that

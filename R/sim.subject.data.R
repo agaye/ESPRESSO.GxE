@@ -13,7 +13,7 @@
 #' @keywords internal
 #' @author Gaye A.
 #'
-sim.subject.data <- function (num.obs=10000, baseline.OR=12.36){
+sim.subject.data <- function (num.obs=NULL, baseline.OR=NULL){
   
   numobs <- num.obs
   baseline.odds <- baseline.OR

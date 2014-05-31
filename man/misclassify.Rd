@@ -2,7 +2,7 @@
 \alias{misclassify}
 \title{Adds some misclassification error to binary data}
 \usage{
-misclassify(binary.vector, error.1.0 = 0.05, error.0.1 = 0.05)
+misclassify(binary.vector = NULL, error.1.0 = NULL, error.0.1 = NULL)
 }
 \arguments{
   \item{binary.vector}{a vector of binary values.}
@@ -25,4 +25,5 @@ misclassification rates.
 \author{
 Gaye A.
 }
+\keyword{internal}
 

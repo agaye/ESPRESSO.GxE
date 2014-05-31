@@ -15,7 +15,7 @@
 #' @keywords internal
 #' @author Amadou Gaye
 #' 
-get.obs.env <- function(env.data=NULL, env.model=0, env.sd=1, env.prev=0.2, env.error=c(0.1,0.1), env.reliability=0.9){
+get.obs.env <- function(env.data=NULL, env.model=NULL, env.sd=NULL, env.prev=NULL, env.error=NULL, env.reliability=NULL){
   
   if(env.model==0){
     obs.env <-  misclassify(binary.vector=env.data, error.1.0=env.error[1], error.0.1=env.error[2])

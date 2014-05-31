@@ -20,14 +20,7 @@
 #' @author Gaye A.
 #'
 samplsize.calc <-
-  function(numcases=2000,numcontrols=8000,num.subjects=500,pheno.model=0,pval=1e-04,power=0.8,mean.model.z=NULL){
-    
-    if(is.null(mean.model.z)){
-      cat("\n\n ALERT!\n")
-      cat(" The argument 'mean.model.z' is set to NULL.\n")
-      cat(" This argument should be the ratio 'mean.beta/mean.se'.\n")
-      stop(" End of process!\n\n", call.=FALSE)
-    } 
+  function(numcases=NULL,numcontrols=NULL,num.subjects=NULL,pheno.model=NULL,pval=NULL,power=NULL,mean.model.z=NULL){
     
     # CALCULATE Z STATISTIC THRESHOLD FOR DESIRED P-VALUE AND POWER
     z.pval <- qnorm(1-pval/2)

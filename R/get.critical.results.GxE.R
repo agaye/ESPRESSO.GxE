@@ -22,23 +22,9 @@
 #' @author Gaye A.
 #'
 get.critical.results.GxE <-
-function(scenario=1, pheno.model=0,geno.model=0,env.model=0,sample.sizes.required=NULL,
-         empirical.power=0.8,modelled.power=0.8,mean.beta=NULL)
+function(scenario=NULL, pheno.model=NULL,geno.model=NULL,env.model=NULL,sample.sizes.required=NULL,
+         empirical.power=NULL,modelled.power=NULL,mean.beta=NULL)
 {
-
-  if(is.null(sample.sizes.required)){
-			  cat("\n\n ALERT!\n")
-			  cat(" The sample size required may have not been computed.\n")
-			  cat(" Check the output of the function 'samplsize.calc'.\n")
-			  stop(" End of process!\n\n", call.=FALSE)
-		 }
-
-   if(is.null(mean.beta)){
-			  cat("\n\n ALERT!\n")
-			  cat(" The argument 'mean.beta' is empty.\n")
-			  cat(" This argument should average beta value'.\n")
-			  stop(" End of process!\n\n", call.=FALSE)
-		 }
 		 
  	 if(geno.model==0){
  	   g.model <- "binary"

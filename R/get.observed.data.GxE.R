@@ -1,41 +1,36 @@
 #'
 #' @title Generates exposure data with some error
 #' @description Uses functions make.obs.geno and make.obs.env to generate effect data with a set level of error
-#' @param true.data Input table of simulated data considered as true data
-#' @param geno.error Misclassification rates in genetic assessment: 1-sensitivity and 1-specificity
-#' @param geno.model Genetic model; 0 for binary and 1 for continuous
-#' @param MAF Minor allele frequency
-#' @param env.error Misclassification rates in environmental exposures assessment: 1-sensitivity and 1-specificity
-#' @param env.model Model of the exposure: binary=0, quantitative-normal=1 or quantitative-uniform=2
-#' @param env.prev Prevalence of environmental exposure
-#' @param env.sd Standard Deviation
-#' @param env.reliability Reliability of the assessment of quantitative exposure
+#' @param data Input table of simulated data considered as true data
+#' @param g.error Misclassification rates in genetic assessment: 1-sensitivity and 1-specificity
+#' @param g.model Genetic model; 0 for binary and 1 for continuous
+#' @param freq Minor allele frequency
+#' @param e.error Misclassification rates in environmental exposures assessment: 1-sensitivity and 1-specificity
+#' @param e.model Model of the exposure: binary=0, quantitative-normal=1 or quantitative-uniform=2
+#' @param e.prev Prevalence of environmental exposure
+#' @param e.sd Standard Deviation
+#' @param e.reliability Reliability of the assessment of quantitative exposure
 #' @return A matrix
-#' @export
+#' @keywords internal
 #' @author Gaye A
 #'
 get.observed.data.GxE <-
-function(true.data=NULL,geno.error=c(0.05,0.05),geno.model=0,MAF=0.1,
-         env.error=c(0.15,0.15),env.model=0,env.prev=0.1,env.sd=1,env.reliability=0.8)
+function(data=NULL,g.error=NULL,g.model=NULL,freq=NULL,
+         e.error=NULL,e.model=NULL,e.prev=NULL,e.sd=NULL,
+         e.reliability=NULL)
 {
-    if(is.null(true.data)){
-      cat("\n\n ALERT!\n")
-      cat(" No data found.\n")
-      cat(" Check the argument 'true.data'\n")
-      stop(" End of process!\n\n", call.=FALSE)
-    }
-		 	
-		sim.df <- true.data      
+		sim.df <- data      
 
     # GET THE OBSERVED GENOTYPES
-    geno.error.1.0 <- geno.error[1]
-    geno.error.0.1 <- geno.error[2]
     true.genotype <- sim.df$genotype
-    obs.genotype <- get.obs.geno(sim.df$allele.A,sim.df$allele.B,geno.model,MAF,geno.error)
+    obs.genotype <- get.obs.geno(allele.A=sim.df$allele.A,allele.B=sim.df$allele.B,
+                                 geno.model=g.model,MAF=freq,geno.error=g.error)
     
     # GET THE OBSERVED ENVIRONMENTAL EXPOSURE DATA
     true.environment <- sim.df$environment
-    obs.environment <- get.obs.env(true.environment,env.model,env.prev,env.sd,env.error,env.reliability)
+		
+    obs.environment <- get.obs.env(env.data=true.environment,env.model=e.model,env.prev=e.prev,
+                                   env.sd=e.sd,env.error=e.error,env.reliability=e.reliability)
     
     # GET THE OBSERVED INTERACTION DATA
     obs.interaction <- obs.genotype$observed.genotype*obs.environment

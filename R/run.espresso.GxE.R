@@ -37,7 +37,8 @@
 #' 
 #' }
 #'
-run.espresso.GxE <- function(simulation.params=NULL, pheno.params=NULL, geno.params=NULL, env.params=NULL, scenarios2run=1){
+run.espresso.GxE <- function(simulation.params=NULL, pheno.params=NULL, geno.params=NULL, 
+                             env.params=NULL, scenarios2run=1){
 
 # IF AN INPUT FILE IS NOT SUPPLIED LOAD THE DEFAULT TABLES WARNING
 if(is.null(simulation.params)){
@@ -164,26 +165,30 @@ for(j in c(scenarios2run))
 
       if(pheno.model == 0){ # UNDER BINARY OUTCOME MODEL
         # GENERATE CASES AND CONTROLS UNTILL THE REQUIRED NUMBER OF CASES, CONTROLS IS ACHIEVED 
-        sim.data <- sim.CC.data.GxE(num.obs=block.size, numcases=numcases, numcontrols=numcontrols, 
-                                    allowed.sample.size=allowed.sample.size, disease.prev=disease.prev,
-                                    MAF=MAF, geno.model=geno.model, geno.OR=geno.OR, env.model=env.model, 
-                                    env.prev=env.prev, env.mean=env.mean, env.sd=env.sd, env.low.lim=env.low.lim, 
-                                    env.up.lim=env.up.lim, env.OR=env.OR, int.OR=int.OR, baseline.OR=baseline.OR, 
+        sim.data <- sim.CC.data.GxE(n=block.size, ncases=numcases, ncontrols=numcontrols, 
+                                    max.sample.size=allowed.sample.size, pheno.prev=disease.prev,
+                                    freq=MAF, g.model=geno.model, g.OR=geno.OR, e.model=env.model, 
+                                    e.prev=env.prev, e.mean=env.mean, e.sd=env.sd, e.low.lim=env.low.lim, 
+                                    e.up.lim=env.up.lim, e.OR=env.OR, i.OR=int.OR, b.OR=baseline.OR, 
                                     ph.error=pheno.error)
 
-        true.data <<- sim.data$data
+        true.data <- sim.data$data
 
       }else{ # UNDER QUANTITATIVE OUTCOME MODEL
         # GENERATE THE SPECIFIED NUMBER OF SUBJECTS
-        true.data <- sim.QTL.data.GxE(numsubjects,pheno.mean,pheno.sd,MAF,geno.model,geno.efkt,env.model,env.efkt,
-         env.prev,env.mean,env.sd,env.low.lim,env.up.lim,int.efkt,pheno.reliability)
+        true.data <- sim.QTL.data.GxE(n=numsubjects,ph.mean=pheno.mean,ph.sd=pheno.sd,freq=MAF,
+                                      g.model=geno.model,g.efkt=geno.efkt,e.model=env.model,
+                                      e.efkt=env.efkt, e.prev=env.prev,e.mean=env.mean,e.sd=env.sd,
+                                      e.low.lim=env.low.lim,e.up.lim=env.up.lim,i.efkt=int.efkt,
+                                      pheno.rel=pheno.reliability)
       }
 
       #------------SIMULATE ERRORS AND ADD THEM TO THE TRUE COVARIATES DATA TO OBTAIN OBSERVED COVARIATES DATA-----------#
 
       # ADD APPROPRIATE ERRORS TO PRODUCE OBSERVED GENOTYPES 
-      observed.data <<- get.observed.data.GxE(true.data,geno.error,geno.model,MAF,env.error,env.model,env.prev,env.sd,
-                                         env.reliability)
+      observed.data <- get.observed.data.GxE(data=true.data,g.error=geno.error,g.model=geno.model,freq=MAF,
+                                             e.error=env.error,e.model=env.model,e.prev=env.prev,e.sd=env.sd,
+                                             e.reliability=env.reliability)
 
 
       #--------------------------DATA ANALYSIS ----------------------------#

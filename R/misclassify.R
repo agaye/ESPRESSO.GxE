@@ -6,10 +6,10 @@
 #' @param error.1.0 1 to 0 misclassification rate.
 #' @param error.0.1 0 to 1 misclassification rate.
 #' @return a binary vector
-#' @export
+#' @keywords internal
 #' @author Gaye A.
 #'
-misclassify <- function (binary.vector, error.1.0=0.05, error.0.1=0.05){
+misclassify <- function (binary.vector=NULL, error.1.0=NULL, error.0.1=NULL){
   
   A <- binary.vector
   A.initial <- A

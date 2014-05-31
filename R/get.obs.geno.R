@@ -13,10 +13,10 @@
 #' \code{observed.genotype} observed genotypes
 #' \code{observed.allele.A} observed A alleles
 #' \code{observed.allele.B} observed B alleles
-#' @export
+#' @keywords internal
 #' @author Gaye A.
 #' 
-get.obs.geno <- function (allele.A=NULL, allele.B=NULL, geno.model=0, MAF=0.1, geno.error=c(0.05, 0.05)){
+get.obs.geno <- function (allele.A=NULL, allele.B=NULL, geno.model=NULL, MAF=NULL, geno.error=NULL){
   
   # IF ALLELE DATA ARE NOT SUPPLIED STOP AND ISSUE AN ALERT
   if(is.null(allele.A)){

@@ -2,9 +2,9 @@
 \alias{sim.pheno.qtl.GxE}
 \title{Simulates continuous outcome data}
 \usage{
-sim.pheno.qtl.GxE(numsubjects = 10000, pheno.mean = 0, pheno.sd = 1,
-  genotype = NULL, geno.efkt = 0.25, environment = NULL, env.efkt = 0.5,
-  interaction = NULL, int.efkt = 1.5)
+sim.pheno.qtl.GxE(numsubjects = NULL, pheno.mean = NULL, pheno.sd = NULL,
+  genotype = NULL, geno.efkt = NULL, environment = NULL,
+  env.efkt = NULL, interaction = NULL, int.efkt = NULL)
 }
 \arguments{
   \item{num.subjects}{Number of subjects to simulate}

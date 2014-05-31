@@ -15,30 +15,11 @@
 #' @author Gaye A.
 #'
 sim.pheno.qtl.GxE <-
-function(numsubjects=10000,pheno.mean=0,pheno.sd=1,genotype=NULL,geno.efkt=0.25,environment=NULL,env.efkt=0.5,
-         interaction=NULL,int.efkt=1.5)
+function(numsubjects=NULL,pheno.mean=NULL,pheno.sd=NULL,genotype=NULL,geno.efkt=NULL,
+         environment=NULL,env.efkt=NULL,interaction=NULL,int.efkt=NULL)
 {  
-   # IF GENOTYPE DATA ARE NOT SUPPLIED STOP AND ISSUE AN ALERT
-   if(is.null(genotype)){
-      cat("\n\n ALERT!\n")
-      cat(" No genotype data found.\n")
-      cat(" Check the argument 'genotype'\n")
-      stop(" End of process!\n\n", call.=FALSE)
-   }
-   if(is.null(environment)){
-      cat("\n\n ALERT!\n")
-      cat(" No environmental exposure data found.\n")
-      cat(" Check the argument 'environment'\n")
-      stop(" End of process!\n\n", call.=FALSE)
-   }
-   if(is.null(interaction)){
-      cat("\n\n ALERT!\n")
-      cat(" No interaction data found.\n")
-      cat(" This should be the product of 'genotype' by 'environment'\n")
-      stop(" End of process!\n\n", call.=FALSE)
-   }
 
-   # ALPHA IS EQUAL TO THE MEAN OF THE TRAIT, WHICH IS 0
+  # ALPHA IS EQUAL TO THE MEAN OF THE TRAIT, WHICH IS 0
    num.obs <- numsubjects
    alpha <- pheno.mean 
 

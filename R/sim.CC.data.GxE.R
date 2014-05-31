@@ -2,35 +2,35 @@
 #' @title Simulates case and controls
 #' @description Generates affected and non-affected subjects until the set sample 
 #' size is achieved.
-#' @param num.obs Number of observations to generate per iteration
-#' @param numcases Number of cases to simulate
-#' @param numcontrols Number of controls to simulate
-#' @param allowed.sample.size Maximum number of observations allowed
-#' @param disease.prev Prevalence of the binary outcome
-#' @param MAF Minor allele frequency
-#' @param geno.model Genetic model; 0 for binary and 1 for continuous
-#' @param geno.OR Odds ratios of the genetic determinants
-#' @param env.model Model of the environmental exposure
-#' @param env.prev Prevelance of the environmental determinates
-#' @param env.mean Mean under quantitative-normal model
-#' @param env.sd Standard deviation under quantitative-normal model
-#' @param env.low.lim Lower limit under quantitative-uniform model
-#' @param env.up.lim Upper limit under quantitative-uniform model
-#' @param env.OR Odds ratios of the environmental determinants
-#' @param int.OR Odds ration of the interaction
-#' @param baseline.OR Baseline odds ratio for subject on 95 percent population 
+#' @param n Number of observations to generate per iteration
+#' @param ncases Number of cases to simulate
+#' @param ncontrols Number of controls to simulate
+#' @param max.sample.size Maximum number of observations allowed
+#' @param pheno.prev Prevalence of the binary outcome
+#' @param freq Minor allele frequency
+#' @param g.model Genetic model; 0 for binary and 1 for continuous
+#' @param g.OR Odds ratios of the genetic determinants
+#' @param e.model Model of the environmental exposure
+#' @param e.prev Prevelance of the environmental determinates
+#' @param e.mean Mean under quantitative-normal model
+#' @param e.sd Standard deviation under quantitative-normal model
+#' @param e.low.lim Lower limit under quantitative-uniform model
+#' @param e.up.lim Upper limit under quantitative-uniform model
+#' @param e.OR Odds ratios of the environmental determinants
+#' @param i.OR Odds ration of the interaction
+#' @param b.OR Baseline odds ratio for subject on 95 percent population 
 #' centile versus 5 percentile. This parameter reflects the heterogeneity in disease 
 #' risk arising from determinates that have not been measured or have not been 
 #' included in the model.
 #' @param ph.error misclassification rates: 1-sensitivity and 1-specificity
 #' @return A matrix
-#' @export
+#' @keywords internal
 #' @author Gaye A.
 #'
 sim.CC.data.GxE <-
-function(num.obs=20000, numcases=2000, numcontrols=8000, allowed.sample.size=20000000, disease.prev=0.1,
-MAF=0.1, geno.model=0, geno.OR=1.5, env.model=0, env.prev=0.1, env.mean=0, env.sd=1, env.low.lim=0, 
-env.up.lim=1, env.OR=1.5, int.OR=1.5, baseline.OR=12.36, ph.error=c(0.1, 0.1))
+function(n=NULL, ncases=NULL, ncontrols=NULL, max.sample.size=NULL, pheno.prev=NULL,
+freq=NULL, g.model=NULL, g.OR=NULL, e.model=NULL, e.prev=NULL, e.mean=NULL, e.sd=NULL, 
+e.low.lim=NULL, e.up.lim=NULL, e.OR=NULL, i.OR=NULL, b.OR=NULL, ph.error=NULL)
 {
    # SET UP ZEROED COUNT VECTORS TO DETERMINE WHEN ENOUGH CASES AND CONTROLS HAVE BEEN GENERATED
    complete <- 0
@@ -51,44 +51,45 @@ env.up.lim=1, env.OR=1.5, int.OR=1.5, baseline.OR=12.36, ph.error=c(0.1, 0.1))
      {
 
        # GENERATE THE TRUE GENOTYPE DATA
-       geno.data <- sim.geno.data(num.obs=num.obs, geno.model=geno.model, MAF=MAF)
+       geno.data <- sim.geno.data(num.obs=n, geno.model=g.model, MAF=freq)
        allele.A <- geno.data$allele.A
        allele.B <- geno.data$allele.B
-       genotype <- geno.data$genotype
+       geno <- geno.data$genotype
      
        # GENERATE THE TRUE ENVIRONMEANTAL EXPOSURE DATA
-       environment <- sim.env.data(num.obs=num.obs, env.model=env.model, env.prev=env.prev, env.mean=env.mean, 
-                                   env.sd=env.sd, env.low.lim=env.low.lim,env.up.lim=env.up.lim)
+       env <- sim.env.data(num.obs=n, env.model=e.model, env.prev=e.prev, env.mean=e.mean, 
+                                   env.sd=e.sd, env.low.lim=e.low.lim,env.up.lim=e.up.lim)
        
        # GENERATE THE TRUE INTERACTION DATA
-       interaction <- genotype*environment       
+       int <- geno*env       
 
        # GENERATE SUBJECT EFFECT DATA THAT REFLECTS BASELINE RISK: 
        # NORMALLY DISTRIBUTED RANDOM EFFECT VECTOR WITH APPROPRIATE 
        # VARIANCE ON SCALE OF LOG-ODDS
-       subject.effect.data <- sim.subject.data(num.obs, baseline.OR)
+       s.effect.data <- sim.subject.data(n, b.OR)
 					  
        # GENERATE THE TRUE OUTCOME DATA
-       pheno.data <- sim.pheno.bin.GxE(num.obs, disease.prev, genotype, environment, interaction, subject.effect.data, 
-                                   geno.OR, env.OR, int.OR)
+       pheno.data <- sim.pheno.bin.GxE(num.obs=n, disease.prev=pheno.prev, genotype=geno, environment=env, 
+                                       interaction=int, subject.effect.data=s.effect.data, geno.OR=g.OR, 
+                                       env.OR=e.OR, int.OR=i.OR)
        true.phenotype <- pheno.data
        
        # GENERATE THE OBSERVED OUTCOME DATA FROM WHICH WE SELECT CASES AND CONTROLS
        obs.phenotype <- get.obs.pheno(phenotype=true.phenotype, pheno.model=0, pheno.error=ph.error)
-       phenotype <- obs.phenotype
+       pheno <- obs.phenotype
 
        # STORE THE TRUE OUTCOME, GENETIC AND ENVIRONMENT AND ALLELE DATA IN AN OUTPUT MATRIX 
        # WHERE EACH ROW HOLDS THE RECORDS OF ONE INDIVUDAL
-       sim.matrix.temp <- cbind(phenotype,genotype,allele.A,allele.B,environment,interaction)
+       sim.matrix.temp <- cbind(pheno,geno,allele.A,allele.B,env,int)
 
        # UPDATE THE MATRIX THAT HOLDS ALL THE DATA GENERATED SO FAR, AFTER EACH LOOP
        sim.matrix <- rbind(sim.matrix, sim.matrix.temp)
 
        # SELECT OUT CASES
-       sim.matrix.cases <- sim.matrix[phenotype==1,]
+       sim.matrix.cases <- sim.matrix[pheno==1,]
 
        # SELECT OUT CONTROLS
-       sim.matrix.controls <- sim.matrix[phenotype==0,]
+       sim.matrix.controls <- sim.matrix[pheno==0,]
 
        # COUNT THE NUMBER OF CASES AND CONTROLS THAT HAS BEEN GENERATED
        cases.simulated <- dim(sim.matrix.cases)[1]
@@ -96,17 +97,17 @@ env.up.lim=1, env.OR=1.5, int.OR=1.5, baseline.OR=12.36, ph.error=c(0.1, 0.1))
 
        # TEST IF THERE ARE AT LEAST ENOUGH CASES ALREADY SIMULATED
        # IF THERE ARE, DEFINE THE CASE ELEMENT OF THE DATA MATRIX
-       if(cases.simulated >= numcases)
+       if(cases.simulated >= ncases)
        {
-         sim.matrix.cases <- sim.matrix.cases[1:numcases,]
+         sim.matrix.cases <- sim.matrix.cases[1:ncases,]
          cases.complete <- 1
        }
 
        # TEST IF THERE ARE AT LEAST ENOUGH CONTROLS ALREADY SIMULATED
        # IF THERE ARE, DEFINE THE CONTROL ELEMENT OF THE DATA MATRIX
-       if(controls.simulated>=numcontrols)
+       if(controls.simulated>=ncontrols)
        {
-         sim.matrix.controls <- sim.matrix.controls[1:numcontrols,]
+         sim.matrix.controls <- sim.matrix.controls[1:ncontrols,]
          controls.complete <- 1
        }
 
@@ -114,7 +115,7 @@ env.up.lim=1, env.OR=1.5, int.OR=1.5, baseline.OR=12.36, ph.error=c(0.1, 0.1))
        complete <- cases.complete*controls.complete		
 
        # HAVE WE EXCEEDED THE TOTAL SAMPLE SIZE ALLOWED?
-       complete.absolute <- (((block+1)*num.obs)>=allowed.sample.size)
+       complete.absolute <- (((block+1)*n)>=max.sample.size)
        if(complete.absolute==1) {sample.size.excess <- 1}else{sample.size.excess <- 0}
 
         # INCREMENT LOOP COUNTER

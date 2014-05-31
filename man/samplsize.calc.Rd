@@ -2,8 +2,8 @@
 \alias{samplsize.calc}
 \title{Calculates the sample size required to achieve the desired power}
 \usage{
-samplsize.calc(numcases = 2000, numcontrols = 8000, num.subjects = 500,
-  pheno.model = 0, pval = 1e-04, power = 0.8, mean.model.z = NULL)
+samplsize.calc(numcases = NULL, numcontrols = NULL, num.subjects = NULL,
+  pheno.model = NULL, pval = NULL, power = NULL, mean.model.z = NULL)
 }
 \arguments{
   \item{numcases}{number of cases when outcome is binary.}

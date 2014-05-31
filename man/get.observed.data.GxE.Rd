@@ -2,33 +2,33 @@
 \alias{get.observed.data.GxE}
 \title{Generates exposure data with some error}
 \usage{
-get.observed.data.GxE(true.data = NULL, geno.error = c(0.05, 0.05),
-  geno.model = 0, MAF = 0.1, env.error = c(0.15, 0.15), env.model = 0,
-  env.prev = 0.1, env.sd = 1, env.reliability = 0.8)
+get.observed.data.GxE(data = NULL, g.error = NULL, g.model = NULL,
+  freq = NULL, e.error = NULL, e.model = NULL, e.prev = NULL,
+  e.sd = NULL, e.reliability = NULL)
 }
 \arguments{
-  \item{true.data}{Input table of simulated data considered
-  as true data}
+  \item{data}{Input table of simulated data considered as
+  true data}
 
-  \item{geno.error}{Misclassification rates in genetic
+  \item{g.error}{Misclassification rates in genetic
   assessment: 1-sensitivity and 1-specificity}
 
-  \item{geno.model}{Genetic model; 0 for binary and 1 for
+  \item{g.model}{Genetic model; 0 for binary and 1 for
   continuous}
 
-  \item{MAF}{Minor allele frequency}
+  \item{freq}{Minor allele frequency}
 
-  \item{env.error}{Misclassification rates in environmental
+  \item{e.error}{Misclassification rates in environmental
   exposures assessment: 1-sensitivity and 1-specificity}
 
-  \item{env.model}{Model of the exposure: binary=0,
+  \item{e.model}{Model of the exposure: binary=0,
   quantitative-normal=1 or quantitative-uniform=2}
 
-  \item{env.prev}{Prevalence of environmental exposure}
+  \item{e.prev}{Prevalence of environmental exposure}
 
-  \item{env.sd}{Standard Deviation}
+  \item{e.sd}{Standard Deviation}
 
-  \item{env.reliability}{Reliability of the assessment of
+  \item{e.reliability}{Reliability of the assessment of
   quantitative exposure}
 }
 \value{
@@ -44,4 +44,5 @@ effect data with a set level of error
 \author{
 Gaye A
 }
+\keyword{internal}
 

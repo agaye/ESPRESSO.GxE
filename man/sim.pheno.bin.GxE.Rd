@@ -40,7 +40,7 @@ Generates affected and non-affected subjects
 
 }
 \author{
-Gaye a.
+Gaye A.
 }
 \keyword{internal}
 

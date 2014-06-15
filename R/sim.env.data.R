@@ -19,7 +19,7 @@ sim.env.data <- function(num.obs=NULL, env.model=NULL, env.prev=NULL, env.mean=N
   if(env.model==0){   # BINARY DISTRIBUTION
      env.U <- rbinom(num.obs, 1, env.prev)
      e.mean <- env.prev
-     env.U <- env.U-env.mean
+     env.U <- env.U-e.mean
   }
   if(env.model==1){   # NORMAL DISTRIBUTION
      env.U <- rnorm(num.obs, env.mean, env.sd)
@@ -29,7 +29,8 @@ sim.env.data <- function(num.obs=NULL, env.model=NULL, env.prev=NULL, env.mean=N
      if(env.low.lim >= env.up.lim){
        stop("\n\nALERT!\n Uniform Distribution: The upper limit must be greater than the lower limit\n\n")
      }else{
-     env.U <- runif(num.obs, env.low.lim, env.up.lim)
+       env.U <- runif(num.obs, env.low.lim, env.up.lim)
+       env.U <- env.U-mean(env.U)     # mean centering
      }
   }
 

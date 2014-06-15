@@ -38,14 +38,14 @@ covariates (a SNP and an environmental exposure)
 
 # load the table that hold the input parameters; each of the table
 # hold parameters for 4 scenarios:
-# scenario 1: a binary outcome determined by a binary SNP and binary exposure,
-# with interaction
+# scenario 1: a binary outcome determined by a binary SNP and binary exposure
+# and an interaction between the the genetic variant and the environmental exposure
 # scenario 2: a binary outcome determined by an additive SNP and continuous
-# exposure, with interaction
+# exposure and an interaction between the the genetic variant and the environmental exposure
 # scenario 3: a quantitative outcome determined by a binary SNP and binary exposure,
-# with interaction
+# and an interaction between the the genetic variant and the environmental exposure
 # scenario 4: a quantitative outcome determined by an additive SNP and continuous
-# exposure, with interaction
+# exposure and an interaction between the the genetic variant and the environmental exposure
 data(simulation.params)
 data(pheno.params)
 data(geno.params)

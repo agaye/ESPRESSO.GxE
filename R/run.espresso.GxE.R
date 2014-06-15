@@ -16,14 +16,14 @@
 #'   
 #' # load the table that hold the input parameters; each of the table
 #' # hold parameters for 4 scenarios:
-#' # scenario 1: a binary outcome determined by a binary SNP and binary exposure, 
-#' # with interaction
+#' # scenario 1: a binary outcome determined by a binary SNP and binary exposure 
+#' # and an interaction between the the genetic variant and the environmental exposure
 #' # scenario 2: a binary outcome determined by an additive SNP and continuous 
-#' # exposure, with interaction
+#' # exposure and an interaction between the the genetic variant and the environmental exposure
 #' # scenario 3: a quantitative outcome determined by a binary SNP and binary exposure, 
-#' # with interaction
+#' # and an interaction between the the genetic variant and the environmental exposure
 #' # scenario 4: a quantitative outcome determined by an additive SNP and continuous 
-#' # exposure, with interaction
+#' # exposure and an interaction between the the genetic variant and the environmental exposure
 #' data(simulation.params) 
 #' data(pheno.params)
 #' data(geno.params)
@@ -94,10 +94,8 @@ output.file <- "output.csv"
 output.matrix <- matrix(numeric(0), ncol=42)
 column.names <- c(colnames(s.parameters), "exceeded.sample.size?","numcases.required", "numcontrols.required", 
                  "numsubjects.required", "empirical.power", "modelled.power","estimated.OR")
-                 
 write(t(column.names),output.file,dim(output.matrix)[2],append=TRUE,sep=";")
-
-
+                 
 #-----------LOOP THROUGH THE SCENARIOS - DEALS WITH ONE SCENARIO AT A TIME-------------
 
 for(j in c(scenarios2run))
@@ -173,6 +171,7 @@ for(j in c(scenarios2run))
                                     ph.error=pheno.error)
 
         true.data <- sim.data$data
+        
 
       }else{ # UNDER QUANTITATIVE OUTCOME MODEL
         # GENERATE THE SPECIFIED NUMBER OF SUBJECTS
@@ -190,11 +189,10 @@ for(j in c(scenarios2run))
                                              e.error=env.error,e.model=env.model,e.prev=env.prev,e.sd=env.sd,
                                              e.reliability=env.reliability)
 
-
       #--------------------------DATA ANALYSIS ----------------------------#
 
       glm.estimates <- glm.analysis.GxE(pheno.model, observed.data)
-
+     
       beta.values[s] <- glm.estimates[[1]]
       se.values[s] <- glm.estimates[[2]]
       z.values[s] <- glm.estimates[[3]]
@@ -209,8 +207,8 @@ for(j in c(scenarios2run))
 
    # SUMMARISE PRIMARY PARAMETER ESTIMATES
    # COEFFICIENTS ON LOG-ODDS SCALE
-   mean.beta <- mean(beta.values, na.rm=T)
-   mean.se <- sqrt(mean(se.values^2, na.rm=T))
+   mean.beta <- round(mean(beta.values, na.rm=T),3)
+   mean.se <- round(sqrt(mean(se.values^2, na.rm=T)),3)
    mean.model.z <- mean.beta/mean.se
    
  
@@ -252,11 +250,11 @@ for(j in c(scenarios2run))
         inputs <- inparams
       }else{
         if(env.model==1){
-        inparams [c(6,8,18,22,26,28,31:33)] <- "NA"
-        inputs <- inparams
+          inparams [c(6,8,18,22,26,28,31:33)] <- "NA"
+          inputs <- inparams
         }else{
-        inparams [c(6,8,18,22,26,28:30,33,34)] <- "NA"
-        inputs <- inparams          
+          inparams [c(6,8,18,22,26,28:30,33,34)] <- "NA"
+          inputs <- inparams          
         }
       }
         outputs <- c(excess, critical.res[[3]], critical.res[[4]], "NA", critical.res[[5]], critical.res[[6]], critical.res[[7]])
@@ -267,11 +265,11 @@ for(j in c(scenarios2run))
         inputs <- inparams
       }else{
         if(env.model==1){
-        inparams [c(4,5,7,15:17,21,26,27,31:34)] <- "NA"
-        inputs <- inparams
+          inparams [c(4,5,7,15:17,21,26,27,31:34)] <- "NA"
+          inputs <- inparams
         }else{
-        inparams [c(4,5,7,15:17,21,26,27,29,30,33,35)] <- "NA"
-        inputs <- inparams          
+          inparams [c(4,5,7,15:17,21,26,27,29,30,33,35)] <- "NA"
+          inputs <- inparams          
         }
       }
       outputs <- c("NA", "NA", "NA", critical.res[[3]], critical.res[[4]], critical.res[[5]], critical.res[[6]])

@@ -18,28 +18,36 @@
 #' 
 get.obs.geno <- function (allele.A=NULL, allele.B=NULL, geno.model=NULL, MAF=NULL, geno.error=NULL){
   
-  # IF ALLELE DATA ARE NOT SUPPLIED STOP AND ISSUE AN ALERT
-  if(is.null(allele.A)){
-    cat("\n\n ALERT!\n")
-    cat(" No allele data found for the first allele.\n")
-    cat(" Check the argument 'allele.A'\n")
-    stop(" End of process!\n\n", call.=FALSE)
-  }
-  if(is.null(allele.B)){
-    cat("\n\n ALERT!\n")
-    cat(" No allele data found for the second allele.\n")
-    cat(" Check the argument 'allele.B'\n")
-    stop(" End of process!\n\n", call.=FALSE)
-  }
-			
   mean.add <- (2*MAF*(1-MAF)+2*(MAF^2))
   mean.bin <- (2*MAF*(1-MAF)+(MAF^2))
-  true.allele.A <- allele.A
-  true.allele.B <- allele.B
   
-  observed.allele.A <- misclassify(binary.vector=true.allele.A, error.1.0=geno.error[1], error.0.1=geno.error[2])
-  observed.allele.B <- misclassify(binary.vector=true.allele.B, error.1.0=geno.error[1], error.0.1=geno.error[2])
-  observed.genotype <- observed.allele.A+observed.allele.B
+  numsubs <- length(allele.A)
+  allele.A.1.missed <- rbinom(numsubs, 1, geno.error[1])
+  allele.A.0.missed <- rbinom(numsubs, 1, geno.error[2])
+  allele.B.1.missed <- rbinom(numsubs, 1, geno.error[1])
+  allele.B.0.missed <- rbinom(numsubs, 1, geno.error[2])
+  
+  observed.allele.A <-
+    ((allele.A==0) * (allele.A.1.missed==0) * (allele.A.0.missed==0) * allele.A)+
+    ((allele.A==1) * (allele.A.1.missed==0) * (allele.A.0.missed==0) * allele.A)+
+    ((allele.A==0) * (allele.A.1.missed==0) * (allele.A.0.missed==1) * (1-allele.A))+
+    ((allele.A==1) * (allele.A.1.missed==0) * (allele.A.0.missed==1) * allele.A)+
+    ((allele.A==0) * (allele.A.1.missed==1) * (allele.A.0.missed==0) * allele.A)+
+    ((allele.A==1) * (allele.A.1.missed==1) * (allele.A.0.missed==0) * (1-allele.A))+
+    ((allele.A==0) * (allele.A.1.missed==1) * (allele.A.0.missed==1) * (1-allele.A))+
+    ((allele.A==1) * (allele.A.1.missed==1) * (allele.A.0.missed==1) * (1-allele.A))
+  
+  observed.allele.B <-
+    ((allele.B==0) * (allele.B.1.missed==0) * (allele.B.0.missed==0) * allele.B)+
+    ((allele.B==1) * (allele.B.1.missed==0) * (allele.B.0.missed==0) * allele.B)+
+    ((allele.B==0) * (allele.B.1.missed==0) * (allele.B.0.missed==1) * (1-allele.B))+
+    ((allele.B==1) * (allele.B.1.missed==0) * (allele.B.0.missed==1) * allele.B)+
+    ((allele.B==0) * (allele.B.1.missed==1) * (allele.B.0.missed==0) * allele.B)+
+    ((allele.B==1) * (allele.B.1.missed==1) * (allele.B.0.missed==0) * (1-allele.B))+
+    ((allele.B==0) * (allele.B.1.missed==1) * (allele.B.0.missed==1) * (1-allele.B))+
+    ((allele.B==1) * (allele.B.1.missed==1) * (allele.B.0.missed==1) * (1-allele.B))
+  
+  observed.genotype <- observed.allele.A + observed.allele.B
   
   if(geno.model==0){
     genotyp.U <- observed.genotype > 0

@@ -77,7 +77,7 @@ e.low.lim=NULL, e.up.lim=NULL, e.OR=NULL, i.OR=NULL, b.OR=NULL, ph.error=NULL)
        # GENERATE THE OBSERVED OUTCOME DATA FROM WHICH WE SELECT CASES AND CONTROLS
        obs.phenotype <- get.obs.pheno(phenotype=true.phenotype, pheno.model=0, pheno.error=ph.error)
        pheno <- obs.phenotype
-
+       
        # STORE THE TRUE OUTCOME, GENETIC AND ENVIRONMENT AND ALLELE DATA IN AN OUTPUT MATRIX 
        # WHERE EACH ROW HOLDS THE RECORDS OF ONE INDIVUDAL
        sim.matrix.temp <- cbind(pheno,geno,allele.A,allele.B,env,int)
@@ -120,7 +120,8 @@ e.low.lim=NULL, e.up.lim=NULL, e.OR=NULL, i.OR=NULL, b.OR=NULL, ph.error=NULL)
 
         # INCREMENT LOOP COUNTER
         numloops <- numloops + 1
-    }
+       
+   }
 
    # STACK FINAL DATA MATRIX WITH CASES FIRST
    sim.matrix <- rbind(sim.matrix.cases,sim.matrix.controls)

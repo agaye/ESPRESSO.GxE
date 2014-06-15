@@ -41,8 +41,9 @@ function(data=NULL,g.error=NULL,g.model=NULL,freq=NULL,
     sim.df$allele.A <- obs.genotype$observed.allele.A
     sim.df$allele.B <- obs.genotype$observed.allele.B
     sim.df$environment <- obs.environment
+		sim.df$interaction <- obs.interaction
     
-    # RETURN THE MATRIX WHICH NOW CONTAINS ONLY THE OBSERVED DATA TO ANALYSE BY GLM
+		# RETURN THE MATRIX WHICH NOW CONTAINS ONLY THE OBSERVED DATA TO ANALYSE BY GLM
     colnames(sim.df) <- c("id", "phenotype", "genotype", "allele.A", "allele.B", "environment", "interaction")
     return(sim.df)
 }

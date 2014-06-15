@@ -14,7 +14,7 @@
 #' @param int.OR Odds ration of the interaction
 #' @return A dataframe of phenotype
 #' @keywords internal
-#' @author Gaye a.
+#' @author Gaye A.
 #'
 sim.pheno.bin.GxE <-
 function(num.obs=NULL, disease.prev=NULL, genotype=NULL, environment=NULL, interaction=NULL, 

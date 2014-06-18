@@ -91,9 +91,9 @@ block.size <- 20000
 
 # DECLARE MATRIX THAT STORE THE RESULTS FOR EACH SCENARIO (ONE PER SCENARIO PER ROW)
 output.file <- "output.csv"
-output.matrix <- matrix(numeric(0), ncol=42)
+output.matrix <- matrix(numeric(0), ncol=43)
 column.names <- c(colnames(s.parameters), "exceeded.sample.size?","numcases.required", "numcontrols.required", 
-                 "numsubjects.required", "empirical.power", "modelled.power","estimated.OR")
+                 "numsubjects.required", "empirical.power", "modelled.power","estimated.OR", "estimated.effect")
 write(t(column.names),output.file,dim(output.matrix)[2],append=TRUE,sep=";")
                  
 #-----------LOOP THROUGH THE SCENARIOS - DEALS WITH ONE SCENARIO AT A TIME-------------
@@ -257,7 +257,8 @@ for(j in c(scenarios2run))
           inputs <- inparams          
         }
       }
-        outputs <- c(excess, critical.res[[3]], critical.res[[4]], "NA", critical.res[[5]], critical.res[[6]], critical.res[[7]])
+        outputs <- c(excess, critical.res[[3]], critical.res[[4]], "NA", critical.res[[5]], 
+                     critical.res[[6]], critical.res[[7]], critical.res[[8]])
    }else{
       mod <- "quantitative"
       if(env.model==0){
@@ -272,7 +273,8 @@ for(j in c(scenarios2run))
           inputs <- inparams          
         }
       }
-      outputs <- c("NA", "NA", "NA", critical.res[[3]], critical.res[[4]], critical.res[[5]], critical.res[[6]])
+      outputs <- c("NA", "NA", "NA", critical.res[[3]], critical.res[[4]], critical.res[[5]], 
+                   critical.res[[6]], critical.res[[7]])
    }
 
    jth.row <- as.character(c(inputs,outputs))

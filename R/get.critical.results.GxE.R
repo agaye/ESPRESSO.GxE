@@ -76,7 +76,7 @@ function(scenario=NULL, pheno.model=NULL,geno.model=NULL,env.model=NULL,sample.s
 					cat("-----------\n")
 					cat(" ",round(modelled.power,2))
 
-					cat("\n\nEstimated ORs\n")
+					cat("\n\nEstimated OR\n")
 					cat("-----------\n")
 					cat(" ",round(estimated.OR,2))
 
@@ -113,9 +113,9 @@ function(scenario=NULL, pheno.model=NULL,geno.model=NULL,env.model=NULL,sample.s
 					cat("-----------\n")
 					cat(" ",round(modelled.power,2))
 
-					cat("\n\nEstimated ORs\n")
+					cat("\n\nEstimated effect\n")
 					cat("-----------\n")
-					cat(" ",estimated.OR)
+					cat(" ",estimated.effect)
 
 					cat("\n\n---- END OF SUMMARY ----\n")
 

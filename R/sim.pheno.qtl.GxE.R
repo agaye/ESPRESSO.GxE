@@ -5,10 +5,10 @@
 #' @param pheno.mean statistical mean
 #' @param pheno.sd standard deviation
 #' @param genotype Genotype
-#' @param geno.efkt Effects if the genetic variants
+#' @param geno.efkt Effects of the genetic variant
 #' @param environment Exposure data for environment
 #' @param env.efkt Effects of the environmental determiants
-#' @param interaction Effect model: main effects=0, Gene-Environment interaction=1, Gene-Gene interaction=2 and Environment-Enviroment interaction=3
+#' @param interaction data
 #' @param int.efkt Interaction effect
 #' @return A dataframe of phenotype
 #' @keywords internal

@@ -12,19 +12,16 @@ sim.pheno.bin.GxE(num.obs = NULL, disease.prev = NULL, genotype = NULL,
 
   \item{disease.prev}{Prevalence of the binary outcome}
 
-  \item{genotype}{Exposure data for genetic determinate}
+  \item{genotype}{Exposure data for genetic determinant}
 
   \item{environment}{Exposure data for environment}
 
-  \item{interaction}{Effect model: main effects=0,
-  Gene-Environment interaction=1, Gene-Gene interaction=2
-  and Environment-Enviroment interaction=3}
+  \item{interaction}{data}
 
   \item{subject.effect.data}{Subject effect data, reflects
   the heterogenity in baseline disease risk}
 
-  \item{geno.OR}{Odds ratios of the two genetic
-  determinates}
+  \item{geno.OR}{Odds ratios of the genetic determinant}
 
   \item{env.OR}{Odds ratios of the two environments}
 

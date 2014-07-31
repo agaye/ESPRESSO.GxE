@@ -15,15 +15,13 @@ sim.pheno.qtl.GxE(numsubjects = NULL, pheno.mean = NULL, pheno.sd = NULL,
 
   \item{genotype}{Genotype}
 
-  \item{geno.efkt}{Effects if the genetic variants}
+  \item{geno.efkt}{Effects of the genetic variant}
 
   \item{environment}{Exposure data for environment}
 
   \item{env.efkt}{Effects of the environmental determiants}
 
-  \item{interaction}{Effect model: main effects=0,
-  Gene-Environment interaction=1, Gene-Gene interaction=2
-  and Environment-Enviroment interaction=3}
+  \item{interaction}{data}
 
   \item{int.efkt}{Interaction effect}
 }

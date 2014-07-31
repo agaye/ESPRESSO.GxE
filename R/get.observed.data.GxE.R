@@ -3,7 +3,7 @@
 #' @description Uses functions make.obs.geno and make.obs.env to generate effect data with a set level of error
 #' @param data Input table of simulated data considered as true data
 #' @param g.error Misclassification rates in genetic assessment: 1-sensitivity and 1-specificity
-#' @param g.model Genetic model; 0 for binary and 1 for continuous
+#' @param g.model Genetic model; 0 for binary and 1 for additive
 #' @param freq Minor allele frequency
 #' @param e.error Misclassification rates in environmental exposures assessment: 1-sensitivity and 1-specificity
 #' @param e.model Model of the exposure: binary=0, quantitative-normal=1 or quantitative-uniform=2

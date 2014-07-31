@@ -13,7 +13,7 @@ get.critical.results.GxE(scenario = NULL, pheno.model = NULL,
   2 for continuous}
 
   \item{geno.model}{Genetic model; 0 for binary and 1 for
-  continuous}
+  additive}
 
   \item{env.model}{Model of the enviromental explosure}
 
@@ -43,6 +43,8 @@ power under each model \code{modelled.power} Power achieved
 under each model with specified sample size
 \code{estimated.OR} Esitmated odds-ratios due to shrinkage
 toward the null resulting from misclassification
+\code{estimated.effect} Estitmated effect size if the
+outocme is continuous
 }
 \description{
 Gets the number of cases and controls or subjects and the

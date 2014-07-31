@@ -4,9 +4,9 @@
 #' @param n Number of subjects to simulate
 #' @param ph.mean statistical mean
 #' @param ph.sd standard deviation
-#' @param freq Minor allele frequencies of the two genetic variants
+#' @param freq Minor allele frequencies of the genetic variant
 #' @param g.model Genetic model; 0 for binary and 1 for continuous
-#' @param g.efkt Effects of the genetic variants
+#' @param g.efkt Effects of the genetic variant
 #' @param e.model Model of the environmental exposure
 #' @param e.efkt Effects of the environment determinats
 #' @param e.prev Prevalences of the environmental determinants

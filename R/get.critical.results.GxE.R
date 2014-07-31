@@ -3,7 +3,7 @@
 #' @description Gets the number of cases and controls or subjects and the empirical and theoretical power under each model and prints a summary on the screen
 #' @param scenario Scenario number
 #' @param pheno.model Type of the outcome; 0 for binary and 2 for continuous
-#' @param geno.model Genetic model; 0 for binary and 1 for continuous
+#' @param geno.model Genetic model; 0 for binary and 1 for additive
 #' @param env.model Model of the enviromental explosure
 #' @param sample.sizes.required Number of cases and controls or number of subjects required to achieve the desired power
 #' @param empirical.power Estimated empirical power
@@ -18,6 +18,7 @@
 #' \code{empirical.power} Estimated empirical power under each model
 #' \code{modelled.power} Power achieved under each model with specified sample size
 #' \code{estimated.OR} Esitmated odds-ratios due to shrinkage toward the null resulting from misclassification
+#' \code{estimated.effect} Estitmated effect size if the outocme is continuous
 #' @keywords internal
 #' @author Gaye A.
 #'

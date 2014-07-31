@@ -3,13 +3,12 @@
 #' @description Generates affected and non-affected subjects
 #' @param num.obs Number of observations to generate per iteration
 #' @param disease.prev Prevalence of the binary outcome
-#' @param genotype Exposure data for genetic determinate
+#' @param genotype Exposure data for genetic determinant
 #' @param environment Exposure data for environment
-#' @param interaction Effect model: main effects=0, Gene-Environment interaction=1, 
-#' Gene-Gene interaction=2 and Environment-Enviroment interaction=3
+#' @param interaction data
 #' @param subject.effect.data Subject effect data, reflects the heterogenity 
 #' in baseline disease risk
-#' @param geno.OR Odds ratios of the two genetic determinates
+#' @param geno.OR Odds ratios of the genetic determinant
 #' @param env.OR Odds ratios of the two environments
 #' @param int.OR Odds ration of the interaction
 #' @return A dataframe of phenotype

@@ -24,9 +24,9 @@ sim.CC.data.GxE(n = NULL, ncases = NULL, ncontrols = NULL,
   \item{freq}{Minor allele frequency}
 
   \item{g.model}{Genetic model; 0 for binary and 1 for
-  continuous}
+  additive}
 
-  \item{g.OR}{Odds ratios of the genetic determinants}
+  \item{g.OR}{Odds ratios of the genetic determinant}
 
   \item{e.model}{Model of the environmental exposure}
 

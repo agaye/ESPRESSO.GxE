@@ -14,13 +14,13 @@ sim.QTL.data.GxE(n = NULL, ph.mean = NULL, ph.sd = NULL, freq = NULL,
 
   \item{ph.sd}{standard deviation}
 
-  \item{freq}{Minor allele frequencies of the two genetic
-  variants}
+  \item{freq}{Minor allele frequencies of the genetic
+  variant}
 
   \item{g.model}{Genetic model; 0 for binary and 1 for
   continuous}
 
-  \item{g.efkt}{Effects of the genetic variants}
+  \item{g.efkt}{Effects of the genetic variant}
 
   \item{e.model}{Model of the environmental exposure}
 

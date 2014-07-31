@@ -14,7 +14,7 @@ get.observed.data.GxE(data = NULL, g.error = NULL, g.model = NULL,
   assessment: 1-sensitivity and 1-specificity}
 
   \item{g.model}{Genetic model; 0 for binary and 1 for
-  continuous}
+  additive}
 
   \item{freq}{Minor allele frequency}
 

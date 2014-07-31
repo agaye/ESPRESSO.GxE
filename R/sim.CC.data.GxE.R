@@ -8,8 +8,8 @@
 #' @param max.sample.size Maximum number of observations allowed
 #' @param pheno.prev Prevalence of the binary outcome
 #' @param freq Minor allele frequency
-#' @param g.model Genetic model; 0 for binary and 1 for continuous
-#' @param g.OR Odds ratios of the genetic determinants
+#' @param g.model Genetic model; 0 for binary and 1 for additive
+#' @param g.OR Odds ratios of the genetic determinant
 #' @param e.model Model of the environmental exposure
 #' @param e.prev Prevelance of the environmental determinates
 #' @param e.mean Mean under quantitative-normal model

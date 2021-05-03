@@ -27,7 +27,7 @@ function(numsubjects=NULL,pheno.mean=NULL,pheno.sd=NULL,genotype=NULL,geno.efkt=
    lp <- alpha + (geno.efkt*genotype) + (env.efkt*environment) + (int.efkt*interaction)
 
    # GENERATE THE TRUE PHENOTYPE DATA
-   phenotype <- rnorm(num.obs,lp,pheno.sd)
+   phenotype <- rnorm(num.obs, mean=lp, sd=sqrt(pheno.sd^2 - var(lp)))
    
    return(phenotype)
 }
